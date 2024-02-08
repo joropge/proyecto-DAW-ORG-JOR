@@ -1,0 +1,67 @@
+.content {
+    display: flex;
+    gap: 120px;
+}
+
+.informacion {
+    flex: 1;
+}
+
+.informacion h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.informacion h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.informacion p {
+    margin-bottom: 10px;
+}
+
+.contacto {
+    flex: 1;
+}
+
+.contacto label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contacto input,
+.contacto select,
+.contacto textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.contacto textarea {
+    resize: none;
+}
+
+.contacto input[type="submit"] {
+    background-color: #ffd700;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contacto input[type="submit"]:hover {
+    background-color: #e6b800;
+}
+
+@media screen and (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    .menu li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

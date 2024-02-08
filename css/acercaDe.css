@@ -1,0 +1,38 @@
+.fabrica {
+    padding: 40px 40px 0 40px;
+}
+
+.fabrica h1,
+.fabrica h2,
+.fabrica h3 {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.fabrica p {
+    margin-bottom: 20px;
+}
+
+.historia {
+    padding: 40px 40px 0 40px;
+}
+
+.historia h3 {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.imagenes {
+    padding: 40px;
+}
+
+.imagen1 h2 {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.imagen1 img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
