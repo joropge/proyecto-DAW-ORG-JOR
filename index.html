@@ -6,23 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ezequiel</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
-<body>
-    <div class="container">
-        <div class="header">
+<body class="bg-black text-white font-sans">
+    <div class="my-0 mx-auto">
+        <div class="header flex justify-between items-center py-2 px-10">
             <div class="logo">
-                <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" /></a>
+                <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
             </div>
-            <div class="menu">
-                <ul>
-                    <li><button id="inicio">Inicio</button></li>
-                    <li><button id="acerca">Acerca de</button></li>
-                    <li><button id="contacto">Contacto</button></li>
+            <div class="menu flex justify-between items-center">
+                <ul class="flex justify-between items-center gap-5 whitespace-nowrap">
+                    <li><button id="inicio"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Inicio</button>
+                    </li>
+                    <li><button id="acerca"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Acerca
+                            de</button></li>
+                    <li><button id="contacto"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Contacto</button>
+                    </li>
                 </ul>
 
-                <svg id="basket" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full" id="basket"
+                    viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -49,48 +57,61 @@
                     </g>
                 </svg>
 
-                <div class="counter">
+                <div
+                    class="counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none">
                     <p id="counter">0</p>
                 </div>
 
             </div>
         </div>
 
-        <div class="order hide" id="order">
-            <div id="full-basket" class="hide">
-                <h1>Resumen pedido</h1>
-                <ul id="list-order">
+        <div class="order flex-col gap-5 bg-white text-black w-96 max-h-[500px] p-5 rounded-md absolute top-20 right-10 z-[100] overflow-y-auto hidden"
+            id="order">
+            <div id="full-basket" class="hidden">
+                <h1 class="text-lg font-bold mb-4">Resumen pedido</h1>
+                <ul id="list-order" class="flex flex-col gap-3">
                 </ul>
-                <p class="hide" id="total-text">Total: <span id="total">0</span>€</p>
-                <button id="pagar">Finalizar pedido</button>
+                <p class="hidden p-2 border-t border-b border-white font-bold text-right mt-3" id="total-text">Total:
+                    <span id="total">0</span>€
+                </p>
+                <button id="pagar"
+                    class="w-full py-3 border-none rounded-md bg-black text-white text-center cursor-pointer mt-4 font-bold hover:bg-light-gray transition-all duration-200 ease-in-out">Finalizar
+                    pedido</button>
             </div>
             <div id="empty-basket">
-                <h1>No hay productos en el carrito</h1>
+                <h1 class="text-lighter-gray text-sm font-semibold text-center">No hay productos en el carrito</h1>
             </div>
 
         </div>
 
-        <div class="banner">
+        <div class="banner h-[500px] overflow-y-hidden">
             <!-- <img src="./assets/img/restaurante-banner.jpg" alt="Banner"> -->
             <!-- CODIGO SLIDER -->
-            <div id="slider-container">
-                <img src="/assets/img/restaurante-banner.jpg" class="slider-img active" alt="Image 1">
-                <img src="/assets/img/ezequiel2.jpg" class="slider-img" alt="Image 2">
-                <img src="/assets/img/ezequiel3.jpg" class="slider-img" alt="Image 3">
+            <div id="slider-container" class="relative max-w-full m-auto">
+                <img src="/assets/img/restaurante-banner.jpg"
+                    class="slider-img active absolute w-full h-[500px] opacity-100 transition duration-100 ease-in-out"
+                    alt="Image 1">
+                <img src="/assets/img/ezequiel2.jpg"
+                    class="slider-img absolute w-full h-[500px] opacity-0 transition duration-100 ease-in-out"
+                    alt="Image 2">
+                <img src="/assets/img/ezequiel3.jpg"
+                    class="slider-img absolute w-full h-[500px] opacity-0 transition duration-100 ease-in-out"
+                    alt="Image 3">
             </div>
         </div>
     </div>
-    <div class="content">
+    <div class="content p-10">
         <div class="main">
-            <h1>Nuestros productos</h1>
+            <h1 class="text-2xl">Nuestros productos</h1>
         </div>
         <!-- Prueba para alvaro -->
-        <div class="display" id="display"></div>
+        <div class="display grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-center py-5"
+            id="display"></div>
     </div>
 
-    <footer>
+    <footer class="text-white text-center p-5 w-full text-xs border-t border-light-gray">
         <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
-      </footer>
+    </footer>
 
     <script src="js/main.js" type="module"></script>
     </div>
