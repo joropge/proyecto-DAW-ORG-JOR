@@ -1,3 +1,4 @@
+import { list } from "postcss";
 import { slider } from "./slider.js";
 //SLIDER
 //document.addEventListener("DOMContentLoaded", slider);
@@ -9,34 +10,54 @@ document.addEventListener("DOMContentLoaded", function () {
         const full = document.getElementById("full-basket");
         const empty = document.getElementById("empty-basket");
         if (itemsTotal() < 1) {
-            full.classList.add("hide");
-            empty.classList.remove("hide");
+            full.classList.add("hidden");
+            empty.classList.remove("hidden");
         } else {
-            full.classList.remove("hide");
-            empty.classList.add("hide");
+            full.classList.remove("hidden");
+            empty.classList.add("hidden");
         }
     }
 
     function addOrder(id, nombre, precio, peso) {
         //const total = document.getElementById("total");
         const totalText = document.getElementById("total-text");
-        totalText.classList.remove("hide");
+        totalText.classList.remove("hidden");
         const listItem = document.createElement("li");
         //añadimos el id del producto al elemento li
         listItem.setAttribute("id", id);
-        listItem.classList.add("product");
+        listItem.classList.add(
+            "product",
+            "flex",
+            "justify-between",
+            "items-center",
+            "border-b",
+            "border-gray-200",
+            "pb-4"
+        );
         listItem.innerHTML = `
             <p>${nombre}</p>
             <p>${peso} kg</p>
             <p class="precio">${precio}€</p>
-            <button class="btn btn-danger">x</button>
+            <button class="btn-danger flex items-center justify-center w-5 h-5 border-none rounded-full cursor-pointer transition duration-200 ease-in-out">
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="none"
+      stroke="red"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M6 18L18 6M6 6l12 12"
+    />
+  </svg>
+</button>
+
         `;
         listItem.querySelector("button").addEventListener("click", function () {
             eliminarElementoPorId(id);
             precioTotal();
             document.getElementById("counter").innerHTML = itemsTotal();
             if (itemsTotal() < 1) {
-                document.getElementById("order").classList.add("hide");
+                document.getElementById("order").classList.add("hidden");
             }
             basketContent();
         });
@@ -79,14 +100,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const mainContainer = document.getElementById("display");
     for (let i = 0; i < productos.length; i++) {
         const div = document.createElement("div");
-        div.classList.add("card");
+        div.classList.add(
+            "card",
+            "w-full",
+            "h-[400px]",
+            "border",
+            "border-neutral-800",
+            "hover:border-white",
+            "rounded-lg",
+            "overflow-hidden",
+            "transition",
+            "duration-200",
+            "ease-in-out"
+        );
         div.innerHTML = `
-        <img src="${productos[i].imagen}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${productos[i].nombre}</h5>
-          <p class="card-text">Ración: ${productos[i].peso} kg</p>
-          <p class="card-text">${productos[i].precio}€ IVA incl.</p>
-          <button class="btn btn-primary">Comprar</button>
+        <img src="${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
+        <div class="card-body h-1/2 flex flex-col justify-between p-5">
+          <h5 class="card-title text-xl font-bold">${productos[i].nombre}</h5>
+          <p class="card-text text-sm text-lighter-gray">Ración: ${productos[i].peso} kg</p>
+          <p class="card-text text-sm text-lighter-gray">${productos[i].precio}€ IVA incl.</p>
+          <button class="btn btn-primary py-3 px-5 border-none rounded-md bg-white hover:bg-neutral-300 text-black text-center cursor-pointer transition duration-200 ease-in-out">Comprar</button>
         </div>`;
         div.querySelector("button").addEventListener("click", function () {
             addOrder(
@@ -176,7 +209,7 @@ function eliminarElementoPorId(id) {
 }
 
 document.getElementById("basket").addEventListener("click", function () {
-    document.getElementById("order").classList.toggle("hide");
+    document.getElementById("order").classList.toggle("hidden");
 });
 
 document.getElementById("pagar").addEventListener("click", function () {
