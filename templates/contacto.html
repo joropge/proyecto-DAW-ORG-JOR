@@ -15,15 +15,17 @@
 </head>
 
 <body class="font-sans bg-black text-white">
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <a href="../index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" /></a>
+  <div class="py-4">
+    <div class="flex justify-between items-center mb-8">
+      <div class="logo ml-8">
+        <a href="../index.html">
+          <img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" />
+        </a>
       </div>
-      <div class="menu">
-        <ul>
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="./acercaDe.html">Acerca de</a></li>
+      <div class="menu mr-8">
+        <ul class="flex">
+          <li><a href="../index.html" class="mr-4">Inicio</a></li>
+          <li><a href="./acercaDe.html" class="mr-4">Acerca de</a></li>
           <li><a href="./contacto.html">Contacto</a></li>
         </ul>
       </div>
@@ -60,13 +62,13 @@
                   <option value="otros">Otros</option>
               </select>
               <label for="mensaje" class="block mb-2">Mensaje</label>
-              <textarea name="mensaje" id="mensaje" cols="30" rows="10" class="w-full p-2 mb-4 border border-gray-300 resize-none" placeholder="Escriba lo que quiera decirnos"></textarea>
-              <input type="submit" value="Enviar" class="bg-yellow-500 text-black font-semibold py-2 px-4 rounded cursor-pointer transition-colors duration-300 hover:bg-yellow-600" />
+              <textarea name="mensaje" id="mensaje" class=" h-28 w-full p-2 mb-4 border border-gray-300 resize-none" placeholder="Escriba lo que quiera decirnos"></textarea>
+              <input type="submit" value="Enviar"  class="bg-yellow-500 text-black font-semibold w-full mb-10 py-2 px-4 rounded cursor-pointer transition-colors duration-300 hover:bg-yellow-600" />
           </form>
       </div>
   </div>
 
-  <footer>
+  <footer class="border-t border-solid border-gray-300 text-white text-center py-4">
     <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
   </footer>
 
