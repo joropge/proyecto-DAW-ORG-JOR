@@ -3,10 +3,15 @@ export default {
     content: [
         "./index.{html,php}",
         "./templates/*.{html, php}",
-        "./src/**/*.{js,ts,jsx,tsx}",
+        "./**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                "light-gray": "#28292b",
+                'lighter-gray': '#777777',
+            },
+        },
     },
     plugins: [],
 };
