@@ -1,3 +1,19 @@
+<?php 
+    //Conectamos a la base de datos
+    require_once 'database.php';
+    $bd = conectarDB();
+    //Comprobamos la sesion, si hay, se coge el nombre de usuario
+    session_start();
+    if (isset($_SESSION['usuario'])) {
+        $usuario = $_SESSION['usuario'];
+    } else {
+        $usuario = "";
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
