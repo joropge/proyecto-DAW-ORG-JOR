@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($resultado) {
             echo "Insertado correctamente";
-            header("Location: /proyecto-daw-org-afh/admin");
+            header("Location: ../");
         }
     }
 }
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1>Añadir producto</h1>
 
     <!-- Boton de volver -->
-    <a href="/proyecto-daw-org-afh/admin" class="boton boton-verde">Volver</a>
+    <a href="../" class="boton boton-verde">Volver</a>
 
     <?php foreach ($errores as $error) : ?>
         <div class="alerta error">
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/proyecto-daw-org-afh/admin/actions/crear-producto.php" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="crear-producto.php" enctype="multipart/form-data">
         <fieldset>
             <legend>Información General</legend>
 

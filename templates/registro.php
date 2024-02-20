@@ -4,15 +4,15 @@ include_once "../database.php";
 $bd = conectarDB();
 //Esto hace que no se ejecute esto hasta que haya algo del post
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['usuario'] && $_POST['nombre'] && $_POST['clave'] && $_POST['email'] !== '') {
-        $conn = new mysqli("localhost", "usuario", "clave", "basedatos");
+    if ($_POST['username'] && $_POST['nombre'] && $_POST['pass'] && $_POST['correo'] !== '') {
+        $conn = conectarDB();
 
         if ($conn->connect_error) {
             die("Error de conexión: " . $conn->connect_error);
         }
 
-        $consulta = $conn->prepare("INSERT INTO usuario (nombre, correo, username, pass, fecha_registro, rol) VALUES (:nombre, :correo, :username, :clave, NOW(), 2 )");
-        $consulta->bind_param('ssss', $_POST['nombre'], $_POST['email'], $_POST['username'], $_POST['clave']);
+        $consulta = $conn->prepare("INSERT INTO usuarios (nombre, correo, username, pass, rol) VALUES (?,?,?,?, 2 )");
+        $consulta->bind_param('ssss', $_POST['nombre'], $_POST['correo'], $_POST['username'], $_POST['pass']);
 
         try {
             $consulta->execute();
@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['nombre'] = $_POST['nombre'];
             $_SESSION['correo'] = $_POST['correo'];
             $_SESSION['username'] = $_POST['username'];
-            $_SESSION['pass'] = $_POST['clave'];
-            $_SESSION['fecha_registro'] = date('Y-m-d H:i:s');
+            $_SESSION['pass'] = $_POST['pass'];
+            // $_SESSION['fecha_registro'] = date('Y-m-d H:i:s');
             $_SESSION['rol'] = 2;
             // header("Location: pedido.php");
         } catch (Exception $e) {
@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+<!-- Hay que linkar bien las rutas para las vista del register -->
 
 <head>
     <meta charset="UTF-8">
@@ -51,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="wrapper">
-        <img src="../assets/imgs/logo.png" alt="">
+            <img src="../assets/imgs/logo.png" alt="">
             <h1>REGISTRO</h1>
-            <a href="../index.php">¿Ya tienes cuenta? Inicia Sesion</a>
+            <a href="./login.php">¿Ya tienes cuenta? Inicia Sesion</a>
             <?php
             if (isset($err)) {
                 echo "<p class='incorrect'>No puede haber campos vacios</p>";
@@ -74,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" name="username" placeholder="Nombre de usuario...">
                 </div>
                 <div>
-                    <label for="clave">Introduzca clave:</label>
-                    <input type="password" name="clave" placeholder="Contraseña...">
+                    <label for="pass">Introduzca clave:</label>
+                    <input type="password" name="pass" placeholder="Contraseña...">
                 </div>
                 <button action="submit">Enviar</button>
             </form>
