@@ -4,6 +4,7 @@ export default {
         "./index.{html,php}",
         "./templates/*.{html, php}",
         "./**/*.{js,ts,jsx,tsx}",
+        "./admin/*.{html,php}",
     ],
     theme: {
         extend: {
