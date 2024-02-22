@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($resultado) {
             echo "Insertado correctamente";
-            header("Location: /proyecto-daw-org-afh/admin");
+            header("Location: ../");
         }
     }
 }
