@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($resultado) {
             echo "Insertado correctamente";
-            header("Location: /proyecto-daw-org-afh/admin");
+            header("Location: ../");
         }
     }
 }
@@ -123,57 +123,68 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../css/output.css">
 </head>
-<body>
-<main class="contenedor seccion">
-    <h1>Añadir producto</h1>
+<body class="bg-black text-white font-sans font-medium">
+<main class="contenedor seccion mb-0 my-auto">
 
-    <!-- Boton de volver -->
-    <a href="/proyecto-daw-org-afh/admin" class="boton boton-verde">Volver</a>
+<div class="header flex justify-between items-center py-2 px-10">
+            <div class="logo">
+                <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
+            </div>
+            <div class="menu flex justify-between items-center">
+                <ul class="flex justify-between items-center gap-5 whitespace-nowrap">
+                    <li><button id="inicio"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Inicio</button>
+                    </li>
+                    <li><button id="acerca"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Acerca
+                            de</button></li>
+                    <li><button id="contacto"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Contacto</button>
+                    </li>
+                </ul>
 
-    <?php foreach ($errores as $error) : ?>
-        <div class="alerta error">
-            <?php echo $error; ?>
+                <svg class="w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full" id="basket"
+                    viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <g id="Basket" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect id="Container" x="0" y="0" width="24" height="24"> </rect>
+                            <path
+                                d="M4,10 L20,10 L20,16 C20,18.209139 18.209139,20 16,20 L8,20 C5.790861,20 4,18.209139 4,16 L4,10 L4,10 Z"
+                                id="shape-1" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-dasharray="0,0"> </path>
+                            <path
+                                d="M7,4 L17,4 L17,5 C17,7.76142375 14.7614237,10 12,10 C9.23857625,10 7,7.76142375 7,5 L7,4 L7,4 Z"
+                                id="shape-2" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-dasharray="0,0"
+                                transform="translate(12.000000, 7.000000) scale(1, -1) translate(-12.000000, -7.000000) ">
+                            </path>
+                            <line x1="12" y1="13" x2="12" y2="17" id="shape-3" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
+                            <line x1="16" y1="13" x2="16" y2="17" id="shape-4" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
+                            <line x1="8" y1="13" x2="8" y2="17" id="shape-5" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
+                        </g>
+                    </g>
+                </svg>
+
+                <div
+                    class="counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none">
+                    <p id="counter">0</p>
+                </div>
+
+            </div>
         </div>
-    <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/proyecto-daw-org-afh/admin/actions/crear-producto.php" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Información General</legend>
+    
+   
 
-            <label for="nombre">Producto</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Producto" value="<?php echo $nombre; ?>">
-
-            <label for="racion">Racion</label>
-            <input type="number" id="racion" name="racion" placeholder="Cantidad Racion" value="<?php echo $racion; ?>">
-
-            <label for="precioKg">Precio/Kg:</label>
-            <input type="number" id="precioKg" name="precioKg" placeholder="Precio/Kg"><?php echo $precioKg; ?>
-
-            <label for="fecha_produccion">Fecha de Produccion</label>
-            <input type="date" id="fecha_produccion" name="fecha_produccion" value="<?php echo $fecha_produccion; ?>">
-
-            <label for="fecha_caducidad">Fecha de Caducidad:</label>
-            <input type="date" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $fecha_caducidad; ?>">
-            
-            <label for="imagen">Imagen:</label>
-            <input type="file" id="imagen" accept="image/jpeg, image/jpg, image/png" name="imagen">
-        </fieldset>
-
-        <fieldset>
-            <legend>Categoria:</legend>
-
-            <select name="categoria_id">
-                <option value="">-- Seleccione --</option>
-                <?php while ($categoria = mysqli_fetch_assoc($resultado)) : ?>
-                    <option <?php echo $categoria === $categoria["id"] ? 'selected' : ''; ?> value="<?php echo $categoria["id"]; ?>"><?php echo $categoria["tipo_animal"] . " - " . $categoria["procedencia"]; ?></option>
-                <?php endwhile; ?>
-            </select>
-        </fieldset>
-
-        <input type="submit" value="Introducir Producto" class="boton boton-verde">
-    </form>
-</main>
+    </main>
 </body>
 </html>
 
