@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once '../database.php';
 $db = conectarDB();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
         $resultado = mysqli_query($db, $query);
 
         echo "<table>";
-        echo "<tr><th>ID</th><th>Nombre</th><th>Precio</th></tr>";
+        echo "<tr><th>Nombre</th><th>Racion</th><th>Precio KG</th><th>Imagen</th></tr>";
         while ($row = mysqli_fetch_assoc($resultado)) {
             echo "<tr>";
             echo "<td>" . $row['nombre'] . "</td>";
