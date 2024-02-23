@@ -49,36 +49,44 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="css/style-index.css" type="text/css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Ezequiel</title>
 </head>
 
-<body>
+<body class="text-white bg-black flex flex-col items-center justify-center h-screen">
+
+    <!-- Nuevo logo -->
+    <div class="logo mb-4">
+        <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
+    </div>
+
     <div class="container">
-        <div class="wrapper">
-            <img src="assets/imgs/logo.png" alt="">
-            <h1>Iniciar Sesion</h1>
+        <div class="wrapper py-8 mx-auto text-center bg-gray-800 bg-opacity-80 rounded-lg shadow-lg max-w-md w-full">
+            <h1 class="text-3xl font-bold text-yellow-500 mb-4">Iniciar Sesión</h1>
 
             <?php
             if (isset($err)) {
-                echo "<p class='incorrect'>usuario o contraseña incorrectos</p>";
+                echo "<p class='incorrect'>Usuario o contraseña incorrectos</p>";
             }
             ?>
 
-            <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="POST">
-                <div>
-                    <label for="username">Usuario: </label>
-                    <input value="<?php if (isset($usuario)) echo $usuario; ?>" name="username" placeholder="Usuario...">
+            <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="POST" class="mx-auto">
+                <div class="mb-4">
+                    <label for="username" class="text-white">Usuario: </label>
+                    <input value="<?php if (isset($usuario)) echo $usuario; ?>" name="username" placeholder="Usuario..." class="w-64 p-2 border border-gray-300 rounded mx-auto block">
                 </div>
-                <div>
-                    <label for="pass">Contraseña: </label>
-                    <input type="password" name="pass" placeholder="Contraseña...">
+                <div class="mb-4">
+                    <label for="pass" class="text-white">Contraseña: </label>
+                    <input type="password" name="pass" placeholder="Contraseña..." class="w-64 p-2 border border-gray-300 rounded mx-auto block">
                 </div>
 
-                <button action="submit">Enviar</button>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded mx-auto block">Enviar</button>
             </form>
-            <a href="./registro.php">¿No tienes cuenta? Registrate</a>
+            <a href="./registro.php" class="text-blue-500 block mb-4">¿No tienes cuenta? Regístrate</a>
+
+
         </div>
     </div>
 
