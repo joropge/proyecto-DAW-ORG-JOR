@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
 
 <body>
     <main class="contenedor seccion">
-        <h1>Administrador de Bienes Raices</h1>
+        <h1>Administrador de productos Ezequiel</h1>
         <a href="./actions/crear-producto.php" class="boton boton-verde">Añadir producto</a>
 
         <?php
