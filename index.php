@@ -129,7 +129,7 @@
         <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="js/main.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
     </div>
 </body>
 
