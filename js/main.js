@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "ease-in-out"
                 );
                 div.innerHTML = `
-                <img src="${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
+                <img src="./imagenes/${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
                 <div class="card-body h-1/2 flex flex-col justify-between p-5">
                   <h5 class="card-title text-xl font-bold">${productos[i].nombre}</h5>
                   <p class="card-text text-sm text-lighter-gray">Ración: ${productos[i].racion} kg</p>
