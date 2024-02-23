@@ -1,15 +1,24 @@
-<?php 
-    //Conectamos a la base de datos
-    require_once 'database.php';
-    $bd = conectarDB();
-    //Comprobamos la sesion, si hay, se coge el nombre de usuario
-    session_start();
-    if (isset($_SESSION['usuario'])) {
-        $usuario = $_SESSION['usuario'];
-    } else {
-        $usuario = "";
-    }
+<?php
+session_start();
+// if (!isset($_SESSION["usuario"])) {
+//     header("Location: ../index.php?redirigido=true");
+// }
 
+include_once "database.php";
+$db = conectarDB();
+
+
+function cerrarSesion()
+{
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php");
+}
+
+// Lógica para cerrar sesion
+if (isset($_GET["cerrar_sesion"])) {
+    cerrarSesion();
+}
 ?>
 
 
@@ -20,9 +29,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ezequiel</title>
+    <title>Ezequiel - <?php echo $_SESSION['nombre'] ?></title>
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/output.css" />
+
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
@@ -42,6 +52,9 @@
                             de</button></li>
                     <li><button id="contacto"
                             class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Contacto</button>
+                    </li>
+                    <li><a href="./templates/login.php" id="login"
+                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Iniciar Sesion</a>
                     </li>
                 </ul>
 
@@ -104,7 +117,7 @@
             <!-- <img src="./assets/img/restaurante-banner.jpg" alt="Banner"> -->
             <!-- CODIGO SLIDER -->
             <div id="slider-container" class="relative max-w-full m-auto">
-                <img src="/assets/img/restaurante-banner.jpg"
+                <img src="/assets/img/banner.jpg"
                     class="slider-img active absolute w-full h-[500px] opacity-100 transition duration-100 ease-in-out"
                     alt="Image 1">
                 <img src="/assets/img/ezequiel2.jpg"
