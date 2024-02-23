@@ -1,4 +1,4 @@
-import { list } from "postcss";
+
 import { slider } from "./slider.js";
 //SLIDER
 //document.addEventListener("DOMContentLoaded", slider);
