@@ -3,6 +3,24 @@
 require_once '../database.php';
 $db = conectarDB();
 
+function borrarProducto($db, $id)
+{
+    $consulta = $db->prepare('DELETE FROM productos WHERE id = ?');
+    $consulta->bind_param('i', $id); // Change 's' to 'i' for integer
+    $consulta->execute();
+}
+
+// Lógica para eliminar producto
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
+    $id = $_GET['borrarProducto'];
+
+    // Assuming $db is your mysqli connection object
+    borrarProducto($db, $id);
+}
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +50,7 @@ $db = conectarDB();
             echo "<td>" . $row['racion'] . "</td>";
             echo "<td>" . $row['precioKg'] . "</td>";
             echo "<td><img src='../imagenes/" . $row['imagen'] . "' width='100'></td>";
-
-
+            echo "<td class='enlace deleteBtn'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . "id='delete-btn' class='delete-btn'>Borrar</a></td>";
             echo "</tr>";
         }
         echo "</table>";

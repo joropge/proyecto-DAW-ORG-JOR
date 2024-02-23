@@ -1,4 +1,25 @@
+<?php
+session_start();
+// if (!isset($_SESSION["usuario"])) {
+//     header("Location: ../index.php?redirigido=true");
+// }
 
+include_once "database.php";
+$db = conectarDB();
+
+
+function cerrarSesion()
+{
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php");
+}
+
+// Lógica para cerrar sesion
+if (isset($_GET["cerrar_sesion"])) {
+    cerrarSesion();
+}
+?>
 
 
 
@@ -8,7 +29,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ezequiel</title>
+    <title>Ezequiel - <?php echo $_SESSION['nombre'] ?></title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/output.css" />
 
