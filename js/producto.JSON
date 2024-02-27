@@ -5,55 +5,55 @@
     "nombre": "Chorizo",
     "precio": 10.9,
     "peso": 0.5,
-    "imagen": "../assets/img/chorizo.jpg"
+    "imagen": "./assets/img/chorizo.jpg"
   },
   {
     "id": 2,
     "nombre": "Chuleta",
     "precio": 12.9,
     "peso": 0.5,
-    "imagen": "../assets/img/chuleta.jpg"
+    "imagen": "./assets/img/chuleta.jpg"
   },
   {
     "id": 3,
     "nombre": "Costilla",
     "precio": 11.9,
     "peso": 0.5,
-    "imagen": "../assets/img/costilla.jpg"
+    "imagen": "./assets/img/costilla.jpg"
   },
   {
     "id": 4,
     "nombre": "Lomo",
     "precio": 13.9,
     "peso": 0.5,
-    "imagen": "../assets/img/lomo.jpg"
+    "imagen": "./assets/img/lomo.jpg"
   },
   {
     "id": 5,
     "nombre": "Pechuga",
     "precio": 9.9,
     "peso": 0.5,
-    "imagen": "../assets/img/pechuga.jpg"
+    "imagen": "./assets/img/pechuga.jpg"
   },
   {
     "id": 6,
     "nombre": "Pierna",
     "precio": 10.9,
     "peso": 0.5,
-    "imagen": "../assets/img/pierna.jpg"
+    "imagen": "./assets/img/pierna.jpg"
   },
   {
     "id": 7,
     "nombre": "Tocino",
     "precio": 8.9,
     "peso": 0.5,
-    "imagen": "../assets/img/tocino.jpg"
+    "imagen": "./assets/img/tocino.jpg"
   },
   {
     "id": 8,
     "nombre": "Tira",
     "precio": 11.9,
     "peso": 0.5,
-    "imagen": "../assets/img/tira.jpg"
+    "imagen": "./assets/img/tira.jpg"
   }
 ]}

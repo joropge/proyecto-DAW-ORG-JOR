@@ -1,4 +1,3 @@
-import { list } from "postcss";
 import { slider } from "./slider.js";
 //SLIDER
 //document.addEventListener("DOMContentLoaded", slider);
@@ -98,39 +97,51 @@ document.addEventListener("DOMContentLoaded", function () {
     // Append the data to the DOM
     // function appendData(data) {
     const mainContainer = document.getElementById("display");
-    for (let i = 0; i < productos.length; i++) {
-        const div = document.createElement("div");
-        div.classList.add(
-            "card",
-            "w-full",
-            "h-[400px]",
-            "border",
-            "border-neutral-800",
-            "hover:border-white",
-            "rounded-lg",
-            "overflow-hidden",
-            "transition",
-            "duration-200",
-            "ease-in-out"
-        );
-        div.innerHTML = `
-        <img src="${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
-        <div class="card-body h-1/2 flex flex-col justify-between p-5">
-          <h5 class="card-title text-xl font-bold">${productos[i].nombre}</h5>
-          <p class="card-text text-sm text-lighter-gray">Ración: ${productos[i].peso} kg</p>
-          <p class="card-text text-sm text-lighter-gray">${productos[i].precio}€ IVA incl.</p>
-          <button class="btn btn-primary py-3 px-5 border-none rounded-md bg-white hover:bg-neutral-300 text-black text-center cursor-pointer transition duration-200 ease-in-out">Comprar</button>
-        </div>`;
-        div.querySelector("button").addEventListener("click", function () {
-            addOrder(
-                productos[i].id,
-                productos[i].nombre,
-                parseFloat(productos[i].precio),
-                parseFloat(productos[i].peso)
-            );
-        });
-        mainContainer.appendChild(div);
-    }
+
+    // Fetch product data from the server
+    fetch("admin/actions/get-products.php")
+        .then((response) => response.json())
+        .then((productos) => {
+            // Loop through the products and create HTML elements
+            for (let i = 0; i < productos.length; i++) {
+                const div = document.createElement("div");
+                div.classList.add(
+                    "card",
+                    "w-full",
+                    "h-[400px]",
+                    "border",
+                    "border-neutral-800",
+                    "hover:border-white",
+                    "rounded-lg",
+                    "overflow-hidden",
+                    "transition",
+                    "duration-200",
+                    "ease-in-out"
+                );
+                div.innerHTML = `
+                <img src="./imagenes/${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
+                <div class="card-body h-1/2 flex flex-col justify-between p-5">
+                  <h5 class="card-title text-xl font-bold">${productos[i].nombre}</h5>
+                  <p class="card-text text-sm text-lighter-gray">Ración: ${productos[i].racion} kg</p>
+                  <p class="card-text text-sm text-lighter-gray">${productos[i].precioKg}€ IVA incl.</p>
+                  <button class="btn btn-primary py-3 px-5 border-none rounded-md bg-white hover:bg-neutral-300 text-black text-center cursor-pointer transition duration-200 ease-in-out">Comprar</button>
+                </div>`;
+                div.querySelector("button").addEventListener(
+                    "click",
+                    function () {
+                        addOrder(
+                            productos[i].id,
+                            productos[i].nombre,
+                            parseFloat(productos[i].precioKg),
+                            parseFloat(productos[i].racion)
+                        );
+                    }
+                );
+                mainContainer.appendChild(div);
+            }
+        })
+        .catch((error) => console.error("Error fetching products:", error));
+
     // }
 
     document.getElementById("inicio").addEventListener("click", function () {

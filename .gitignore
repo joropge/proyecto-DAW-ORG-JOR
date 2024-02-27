@@ -1,6 +1,6 @@
+vscode/
 node_modules/
-package.json/
-package-lock.json/
+package-lock.json
 package.json
 database.php
 
