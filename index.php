@@ -1,4 +1,25 @@
+<?php
+session_start();
+// if (!isset($_SESSION["usuario"])) {
+//     header("Location: ../index.php?redirigido=true");
+// }
 
+include_once "database.php";
+$db = conectarDB();
+
+
+function cerrarSesion()
+{
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php");
+}
+
+// Lógica para cerrar sesion
+if (isset($_GET["cerrar_sesion"])) {
+    cerrarSesion();
+}
+?>
 
 
 
@@ -8,7 +29,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ezequiel</title>
+    <title>Ezequiel - 
+        <?php
+        if (isset($_SESSION["usuario"])) {
+            echo $_SESSION["usuario"];
+        } else {
+            echo "Inicio";
+        }
+        ?>
+    </title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/output.css" />
 
@@ -19,7 +48,7 @@
     <div class="my-0 mx-auto">
         <div class="header flex justify-between items-center py-2 px-10">
             <div class="logo">
-                <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
+                <a href="./index.php"><img src="assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
             </div>
             <div class="menu flex justify-between items-center">
                 <ul class="flex justify-between items-center gap-5 whitespace-nowrap">
@@ -96,13 +125,13 @@
             <!-- <img src="./assets/img/restaurante-banner.jpg" alt="Banner"> -->
             <!-- CODIGO SLIDER -->
             <div id="slider-container" class="relative max-w-full m-auto">
-                <img src="/assets/img/banner.jpg"
+                <img src="assets/img/ezequiel1.jpg"
                     class="slider-img active absolute w-full h-[500px] opacity-100 transition duration-100 ease-in-out"
                     alt="Image 1">
-                <img src="/assets/img/ezequiel2.jpg"
+                <img src="assets/img/ezequiel2.jpg"
                     class="slider-img absolute w-full h-[500px] opacity-0 transition duration-100 ease-in-out"
                     alt="Image 2">
-                <img src="/assets/img/ezequiel3.jpg"
+                <img src="assets/img/ezequiel3.jpg"
                     class="slider-img absolute w-full h-[500px] opacity-0 transition duration-100 ease-in-out"
                     alt="Image 3">
             </div>
@@ -122,6 +151,7 @@
     </footer>
 
     <script src="js/main.js" type="module"></script>
+
     </div>
 </body>
 

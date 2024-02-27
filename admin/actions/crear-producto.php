@@ -79,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     (!$imagen["name"] || $imagen["error"]) ? $errores[] = "La imagen es obligatoria" : null;
 
 
-    // Validar por tamaño (1mb máximo)
-    $medida = 1000 * 1000;
+    // Validar por tamaño (10mb máximo)
+    $medida = 1000 * 1000 * 10;
 
     if ($imagen["size"] > $medida) {
         $errores[] = "La imagen es muy pesada";
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($resultado) {
             echo "Insertado correctamente";
-            header("Location: ../");
+            header("Location: ../../admin");
         }
     }
 }
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1>Añadir producto</h1>
 
     <!-- Boton de volver -->
-    <a href="../" class="boton boton-verde">Volver</a>
+    <a href="../../admin" class="boton boton-verde">Volver</a>
 
     <?php foreach ($errores as $error) : ?>
         <div class="alerta error">
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="crear-producto.php" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="../../admin/actions/crear-producto.php" enctype="multipart/form-data">
         <fieldset>
             <legend>Información General</legend>
 
