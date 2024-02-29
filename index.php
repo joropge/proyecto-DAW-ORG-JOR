@@ -38,7 +38,7 @@ if (isset($_GET["cerrar_sesion"])) {
         }
         ?>
     </title>
-    <link rel="stylesheet" href="css/styles.css" />
+    
     <link rel="stylesheet" href="css/output.css" />
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -52,8 +52,8 @@ if (isset($_GET["cerrar_sesion"])) {
             </div>
             <div class="menu flex justify-between items-center">
                 <ul class="flex justify-between items-center gap-5 whitespace-nowrap">
-                    <li><button id="inicio"
-                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Inicio</button>
+                    <li><a href="./index.php"><button id="inicio"
+                                class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Inicio</button></a>
                     </li>
                     <li><a href="./templates/acercaDe.php"><button id="acerca" 
                             class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Acerca
