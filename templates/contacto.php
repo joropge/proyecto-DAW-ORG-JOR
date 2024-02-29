@@ -8,19 +8,19 @@
   
 
   <link rel="stylesheet" href="../css/output.css">
+  
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 
-<body class="font-sans bg-black text-white font-medium">
-  <div class="py-4">
-    <div class="flex justify-between items-center mb-8">
-      <div class="logo ml-8">
+<body class="bg-black text-white">
+<div class="flex justify-between items-center mb-8">
+      <div class="logo">
         <a href="../index.php">
           <img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" />
         </a>
       </div>
-      <div class="menu mr-8">
+      <div class="menu">
         <ul class="flex">
           <li><a href="../index.php" class="mr-4">Inicio</a></li>
           <li><a href="./acercaDe.php" class="mr-4">Acerca de</a></li>
@@ -44,7 +44,7 @@
           <p class="mb-2">Lunes a Domingo: 07:00 - 24:00</p>
           <p>Turnos de comida: 14:00 y 15:30 horas</p>
       </div>
-      <div class="contacto flex-1 ">
+      <div class="contacto flex-1">
           <form action="#" method="post">
               <label for="nombre" class="block mb-2">Nombre</label>
               <input type="text" id="nombre" name="nombre" class="w-full p-2 mb-4 border border-gray-300 rounded" />
@@ -67,8 +67,8 @@
   </div>
 
   <footer class="border-t border-solid border-gray-300 text-white text-center py-4">
-    <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
-  </footer>
+  <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
+</footer>
 
   <script src="/js/main.js" type="module"></script>
 </body>

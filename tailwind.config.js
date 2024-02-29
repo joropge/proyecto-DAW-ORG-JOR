@@ -3,7 +3,7 @@ export default {
     content: [
         "./index.{html,php}",
         "./templates/*.{html, php}",
-        "./**/*.{js,ts,jsx,tsx}",
+        "./**/*.{js,ts,jsx,tsx,php}",
         "./**/*.{html,php}",    
         "./admin/*.{html,php}",
     ],

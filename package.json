@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "build:css": "npx tailwindcss build -o ./css/output.css",
     "build": "vite build"
   },
   "name": "proyecto-daw-org-afh",
