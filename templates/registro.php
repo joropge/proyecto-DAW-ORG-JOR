@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="text-white bg-black flex flex-col items-center justify-center h-screen">
 
     <div class="logo mb-4">
-        <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
+        <a href="./index.php"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
     </div>
 
     <div class="wrapper py-8 mx-auto text-center bg-gray-800 bg-opacity-80 rounded-lg shadow-lg max-w-md w-full">

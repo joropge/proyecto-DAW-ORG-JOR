@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!-- Nuevo logo -->
     <div class="logo mb-4">
-        <a href="./index.html"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
+        <a href="./index.php"><img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" /></a>
     </div>
 
     <div class="container">

@@ -100,9 +100,10 @@
 
 
 
- <footer class="border-t border-solid border-gray-300 text-white text-center py-4">
-            <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
-        </footer>
+  <!-- Footer -->
+<footer class="border-t border-solid border-gray-300 text-white text-center py-4">
+  <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
+</footer>
 
 
   <script src="/js/main.js" type="module"></script>
