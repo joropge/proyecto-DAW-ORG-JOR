@@ -58,8 +58,10 @@ if (isset($_GET["cerrar_sesion"])) {
                     <li><button id="acerca"
                             class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Acerca
                             de</button></li>
-                    <li><button id="contacto"
+                    <li>
+                        <a href="./templates/contacto.php"><button id="contacto"
                             class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Contacto</button>
+                            </a>
                     </li>
                     <li><a href="./templates/login.php" id="login"
                             class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Iniciar Sesion</a>

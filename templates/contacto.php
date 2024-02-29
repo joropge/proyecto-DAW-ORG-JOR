@@ -5,10 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto</title>
-    <!-- <link rel="stylesheet" href="../css/styles.css" /> -->
     <!--Estilos por Mario-->
     <!-- <link rel="stylesheet" href="../css/contacto.css"> -->
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/output.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 
@@ -16,15 +15,15 @@
     <div class="py-4">
         <div class="flex justify-between items-center mb-8">
             <div class="logo ml-8">
-                <a href="../index.html">
+                <a href="../index.php">
                     <img src="../assets/img/logo-menu.png" alt="Logo Ezequiel" />
                 </a>
             </div>
             <div class="menu mr-8">
                 <ul class="flex">
-                    <li><a href="../index.html" class="mr-4">Inicio</a></li>
-                    <li><a href="./acercaDe.html" class="mr-4">Acerca de</a></li>
-                    <li><a href="./contacto.html">Contacto</a></li>
+                    <li><a href="../index.php" class="mr-4">Inicio</a></li>
+                    <li><a href="./acercaDe.php" class="mr-4">Acerca de</a></li>
+                    <li><a href="./contacto.php">Contacto</a></li>
                 </ul>
             </div>
         </div>
@@ -71,7 +70,7 @@
         </footer>
 
         <script src="/js/main.js" type="module"></script>
-    </div>
 </body>
+
 
 </html>
