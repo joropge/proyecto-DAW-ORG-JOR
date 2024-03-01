@@ -7,9 +7,10 @@
     "tailwindcss": "^3.4.1"
   },
   "scripts": {
-    "dev": "vite",
     "build:css": "npx tailwindcss build -o ./css/output.css",
-    "build": "vite build"
+    "dev": "vite",
+    "build": "vite build",
+    "build:css": "npx tailwindcss build -o ./css/output.css"
   },
   "name": "proyecto-daw-org-afh",
   "description": "Desarrollo conjunto de una web para una carnicería (Ezequiel)",

@@ -11,3 +11,5 @@ function conectarDB() : mysqli {
     return $db;
 
 }
+
+//http://localhost/proyecto-DAW-ORG-JOR/proyecto-daw-org/proyecto-DAW-ORG-AFH/
