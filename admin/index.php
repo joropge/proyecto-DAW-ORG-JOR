@@ -3,6 +3,24 @@
 require_once '../database.php';
 $db = conectarDB();
 
+//Iniciar la sesion con el usuario traido del login, si el rol del usuario es diferente a 1, redirigir a index.php
+session_start();
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
+    header("Location: ../index.php");
+}
+
+function cerrarSesion()
+{
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php");
+}
+
+// Lógica para cerrar sesion
+if (isset($_GET["cerrar_sesion"])) {
+    cerrarSesion();
+}
+
 function borrarProducto($db, $id)
 {
 
@@ -62,12 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/tailwind.css">
     <title>Document</title>
 </head>
 
 <body>
     <main class="contenedor seccion">
-        <h1>Administrador de productos Ezequiel</h1>
+        <!-- Poner en el titulo el nombre del usuario que tenemos de la sesion-->
+        <h1>Bienvenido, <?php echo $_SESSION['nombre'] ?></h1>  
+        <!-- Boton cerrar sesion aplicando el metodo php cerrarSesion -->
+        <a href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>?cerrar_sesion=true" class="boton boton-rojo">Cerrar sesión</a>
         <a href="./actions/crear-producto.php" class="boton boton-verde">Añadir producto</a>
 
         <?php

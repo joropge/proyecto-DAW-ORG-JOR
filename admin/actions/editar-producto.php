@@ -94,6 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Verificar si se realizó la actualización
         if ($resultado_update) {
             echo "Producto actualizado correctamente.";
+            //Redirige a index de admin
+            header("Location: ../../admin");
         } else {
             echo "Error al actualizar el producto: " . mysqli_error($db);
         }
