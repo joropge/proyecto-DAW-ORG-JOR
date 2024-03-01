@@ -4,7 +4,7 @@
 require_once '../../database.php';
 $db = conectarDB();
 
-// Consultar para obtener categoriaes
+// Consultar para obtener categorias
 $consulta = "SELECT * FROM categoria";
 $resultado = mysqli_query($db, $consulta);
 
@@ -22,13 +22,6 @@ $categoria_id = '';
 
 // Ejecutar el código después de que el usuario envía el formulario
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo "</pre>";
-
-    // echo "<pre>";
-    // var_dump($_FILES);
-    // echo "</pre>";
 
     $nombre = $_POST["nombre"];
     $racion = $_POST["racion"];
@@ -40,35 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Asignar files hacia una variable
     $imagen = $_FILES["imagen"];
-
-    // if (!$nombre) {
-    //     $errores[] = "Debes añadir un nombre";
-    // }
-
-    // if (!$racion) {
-    //     $errores[] = "La racion es obligatorio";
-    // }
-
-
-    // if (!$precioKg) {
-    //     $errores[] = "Introduce un precio valido";
-    // }
-
-    // if (!$fecha_produccion) {
-    //     $errores[] = "Introduce una fecha de produccion valida";
-    // }
-
-    // if (!$fecha_caducidad) {
-    //     $errores[] = "Introduce una fecha de caducidad valida";
-    // }
-
-    // if (!$categoria_id) {
-    //     $errores[] = "Elige una categoria";
-    // }
-
-    // if (!$imagen["name"] || $imagen["error"]) {
-    //     $errores[] = "La imagen es obligatoria";
-    // }
 
     (!$nombre) ? $errores[] = "Debes añadir un nombre" : null;
     (!$racion) ? $errores[] = "La racion es obligatorio" : null;
@@ -157,12 +121,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <label for="fecha_produccion" class="block mt-4">Fecha de Produccion</label>
                 <input type="date" id="fecha_produccion" name="fecha_produccion" class="border border-gray-300 p-2 w-1/2 rounded text-black" value="<?php echo $fecha_produccion; ?>">
 
-                <label for="fecha_caducidad" class="block mt-4">Fecha de Caducidad:</label>
-                <input type="date" id="fecha_caducidad" name="fecha_caducidad" class="border border-gray-300 p-2 w-1/2 rounded text-black" value="<?php echo $fecha_caducidad; ?>">
+            <label for="fecha_caducidad">Fecha de Caducidad:</label>
+            <input type="date" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $fecha_caducidad; ?>">
+            
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" accept="image/jpeg, image/jpg, image/png" name="imagen">
 
-                <label for="imagen" class="block mt-4">Imagen:</label>
-                <input type="file" id="imagen" accept="image/jpeg, image/jpg, image/png" name="imagen" class="mt-2">
-            </fieldset>
+        </fieldset>
 
             <fieldset class="mt-4">
                 <legend class="text-lg font-bold">Categoria:</legend>
