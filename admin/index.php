@@ -3,24 +3,6 @@
 require_once '../database.php';
 $db = conectarDB();
 
-//Iniciar la sesion con el usuario traido del login, si el rol del usuario es diferente a 1, redirigir a index.php
-session_start();
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
-    header("Location: ../index.php");
-}
-
-function cerrarSesion()
-{
-    session_unset();
-    session_destroy();
-    header("Location: ../index.php");
-}
-
-// Lógica para cerrar sesion
-if (isset($_GET["cerrar_sesion"])) {
-    cerrarSesion();
-}
-
 function borrarProducto($db, $id)
 {
 
@@ -37,40 +19,13 @@ function borrarProducto($db, $id)
     $consulta->bind_param('i', $id);
     $consulta->execute();
 
-    
-
-
 }
 
 // Lógica para eliminar producto
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
     $id = $_GET['borrarProducto'];
-
-    // Assuming $db is your mysqli connection object
     borrarProducto($db, $id);
 }
-
-//funcion para editar los productos
-function editarProducto($db, $id)
-{
-    // Preparar y ejecutar la consulta para obtener los detalles del producto por su ID
-    $consulta = $db->prepare("SELECT * FROM productos WHERE id = ?");
-    $consulta->bind_param('i', $id);
-    $consulta->execute();
-    $resultado = $consulta->get_result();
-    // Devuelve los detalles del producto como un array asociativo
-    return $resultado->fetch_assoc();
-}
-
-// Lógica para editar producto
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
-    $id = $_GET['editarProducto'];
-
-    // Assuming $db is your mysqli connection object
-    editarProducto($db, $id);
-}
-
-
 
 ?>
 
@@ -80,44 +35,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/tailwind.css">
-    <title>Document</title>
+    <title>Administrador de productos Ezequiel</title>
+    <link rel="stylesheet" href="../css/output.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19" rel="stylesheet">
 </head>
 
-<body>
-    <main class="contenedor seccion">
-        <!-- Poner en el titulo el nombre del usuario que tenemos de la sesion-->
-        <h1>Bienvenido, <?php echo $_SESSION['nombre'] ?></h1>  
-        <!-- Boton cerrar sesion aplicando el metodo php cerrarSesion -->
-        <a href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>?cerrar_sesion=true" class="boton boton-rojo">Cerrar sesión</a>
-        <a href="./actions/crear-producto.php" class="boton boton-verde">Añadir producto</a>
+<body class="bg-black text-white font-sans">
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl mb-4">Administrador de productos Ezequiel</h1>
+        <a href="./actions/crear-producto.php"
+            class="inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">Añadir
+            producto</a>
 
-        <?php
-        // Your PHP code to display the products from the "productos" table goes here
-        $query = "SELECT * FROM productos";
-        $resultado = mysqli_query($db, $query);
+        <table class="mt-8 w-full table-auto">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Nombre</th>
+                    <th class="px-4 py-2">Racion</th>
+                    <th class="px-4 py-2">Precio KG</th>
+                    <th class="px-4 py-2">Imagen</th>
+                    <th class="px-4 py-2">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Your PHP code to display the products from the "productos" table goes here
+                $query = "SELECT * FROM productos";
+                $resultado = mysqli_query($db, $query);
 
-        echo "<table>";
-        echo "<tr><th>Nombre</th><th>Racion</th><th>Precio KG</th><th>Imagen</th></tr>";
-        while ($row = mysqli_fetch_assoc($resultado)) {
-            echo "<tr>";
-            echo "<td>" . $row['nombre'] . "</td>";
-            echo "<td>" . $row['racion'] . "</td>";
-            echo "<td>" . $row['precioKg'] . "</td>";
-            if (!empty($row['imagen'])) {
-                echo "<td><img src='../imagenes/" . $row['imagen'] . "' width='100'></td>";
-            } else {
-                echo "<td><img src='https://via.placeholder.com/150' width='100'></td>";
-            }
-            echo "<td class='enlace deleteBtn'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . "id='delete-btn' class='delete-btn'>Borrar</a></td>";
-            echo "<td class='enlace editBtn'><a href='./actions/editar-producto.php?id=" . $row["id"] . "' id='edit-btn' class='edit-btn'>Editar</a></td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+                
+while ($row = mysqli_fetch_assoc($resultado)) {
+    echo "<tr>";
+    echo "<td class='px-4 py-2'>" . $row['nombre'] . "</td>";
+    echo "<td class='px-4 py-2'>" . $row['racion'] . "</td>";
+    echo "<td class='px-4 py-2'>" . $row['precioKg'] . "</td>";
+    if (!empty($row['imagen'])) {
+        echo "<td class=' h-[150px] w-[150px] overflow-auto'><img src='../imagenes/" . $row['imagen'] . "' class='h-[150px] w-[150px]'></td>";
+    } else {
+        echo "<td class='h-[150px] w-[150px] '><img src='https://via.placeholder.com/150'></td>";
+    }
+    echo "<td class='px-4 py-2 mx-5'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . " id='delete-btn' class='inline-block bg-red-500 text-white px-8 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out'>Borrar</a></td>";
+    echo "</tr>";
+}
+?>
 
-        ?>
-
-
+            </tbody>
+        </table>
     </main>
 </body>
 
