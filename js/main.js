@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "ease-in-out"
                 );
                 div.innerHTML = `
-                <img src="${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
+                <img src="./imagenes/${productos[i].imagen}" class="card-img-top w-full h-1/2 object-cover" alt="...">
                 <div class="card-body h-1/2 flex flex-col justify-between p-5">
                   <h5 class="card-title text-xl font-bold">${productos[i].nombre}</h5>
                   <p class="card-text text-sm text-lighter-gray">Ración: ${productos[i].racion} kg</p>
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Verificar la respuesta del usuario
             if (confirmacion) {
                 // El usuario hizo clic en "Aceptar"
-                window.location.href = "/index.html";
+                window.location.href = "/index.php";
                 // Aquí puedes agregar la lógica para realizar la acción
             } else {
                 // El usuario hizo clic en "Cancelar" o cerró la ventana
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Aquí puedes agregar la lógica para manejar la cancelación
             }
         } else {
-            window.location.href = "/index.html";
+            window.location.href = "/index.php";
         }
     });
     document.getElementById("acerca").addEventListener("click", function () {
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Verificar la respuesta del usuario
             if (confirmacion) {
                 // El usuario hizo clic en "Aceptar"
-                window.location.href = "../templates/acercaDe.html";
+                window.location.href = "../templates/acercaDe.php";
                 // Aquí puedes agregar la lógica para realizar la acción
             } else {
                 // El usuario hizo clic en "Cancelar" o cerró la ventana
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Aquí puedes agregar la lógica para manejar la cancelación
             }
         } else {
-            window.location.href = "../templates/acercaDe.html";
+            window.location.href = "../templates/acercaDe.php";
         }
     });
     document.getElementById("contacto").addEventListener("click", function () {
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Verificar la respuesta del usuario
             if (confirmacion) {
                 // El usuario hizo clic en "Aceptar"
-                window.location.href = "../templates/contacto.html";
+                window.location.href = "../templates/contacto.php";
                 // Aquí puedes agregar la lógica para realizar la acción
             } else {
                 // El usuario hizo clic en "Cancelar" o cerró la ventana
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Aquí puedes agregar la lógica para manejar la cancelación
             }
         } else {
-            window.location.href = "../templates/contacto.html";
+            window.location.href = "../templates/contacto.php";
         }
     });
 });
@@ -224,7 +224,7 @@ document.getElementById("basket").addEventListener("click", function () {
 });
 
 document.getElementById("pagar").addEventListener("click", function () {
-    window.location.href = "/templates/gracias.html";
+    window.location.href = "/templates/gracias.php";
 });
 
 const productos = [
