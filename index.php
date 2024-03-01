@@ -1,18 +1,16 @@
 <?php
-session_start();
-// if (!isset($_SESSION["usuario"])) {
-//     header("Location: ../index.php?redirigido=true");
-// }
-
 include_once "database.php";
 $db = conectarDB();
+
+
+session_start();
 
 
 function cerrarSesion()
 {
     session_unset();
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: ./index.php");
 }
 
 // Lógica para cerrar sesion
@@ -31,16 +29,17 @@ if (isset($_GET["cerrar_sesion"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ezequiel - 
         <?php
-        if (isset($_SESSION["usuario"])) {
-            echo $_SESSION["usuario"];
+        if (isset($_SESSION["nombre"])) {
+            echo $_SESSION["nombre"];
         } else {
             echo "Inicio";
         }
         ?>
     </title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/output.css" />
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+    <!-- <link rel="stylesheet" href="css/output.css" /> -->
 
+    <link rel="stylesheet" href="css/output.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
@@ -61,8 +60,17 @@ if (isset($_GET["cerrar_sesion"])) {
                     <li><button id="contacto"
                             class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Contacto</button>
                     </li>
-                    <li><a href="./templates/login.php" id="login"
-                            class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">Iniciar Sesion</a>
+                    <li>
+                        <?php
+                        if (isset($_SESSION["nombre"])) {
+                            // Hacer un enlace cerrar sesion que aplique el metodo cerrarSesion
+                            echo "<a href='./index.php?cerrar_sesion' id='cerrar_sesion' class='bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white'>Cerrar Sesion</a>";
+                            //Imprimir el nombre de usuario
+                            echo "<p class='text-white text-md font-bold'>" . $_SESSION["username"] . "</p>";
+                        } else {
+                            echo "<a href='./templates/login.php' id='login' class='bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white'>Iniciar Sesion</a>";
+                        }
+                        ?>
                     </li>
                 </ul>
 
