@@ -110,7 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
                 echo "<td><img src='https://via.placeholder.com/150' width='100'></td>";
             }
             echo "<td class='enlace deleteBtn'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . "id='delete-btn' class='delete-btn'>Borrar</a></td>";
-            echo "<td class='enlace editBtn'><a href='./actions/editar-producto.php?id=" . $row["id"] . "' id='edit-btn' class='edit-btn'>Editar</a></td>";
+            //boton editar
+            echo "<td class='enlace'><a href='./actions/editar-producto.php?id=" . $row["id"] . "id='edit-btn' class='edit-btn'>Editar</a></td>";
             echo "</tr>";
         }
         echo "</table>";
