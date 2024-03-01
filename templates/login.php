@@ -75,11 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="POST" class="mx-auto">
                 <div class="mb-4">
                     <label for="username" class="text-white">Usuario: </label>
-                    <input value="<?php if (isset($usuario)) echo $usuario; ?>" name="username" placeholder="Usuario..." class="w-64 p-2 border border-gray-300 rounded mx-auto block">
+                    <input value="<?php if (isset($usuario)) echo $usuario; ?>" name="username" placeholder="Usuario..." class="w-64 p-2 border border-gray-300 rounded mx-auto block  text-black">
                 </div>
                 <div class="mb-4">
                     <label for="pass" class="text-white">Contraseña: </label>
-                    <input type="password" name="pass" placeholder="Contraseña..." class="w-64 p-2 border border-gray-300 rounded mx-auto block">
+                    <input type="password" name="pass" placeholder="Contraseña..." class="w-64 p-2 border border-gray-300 rounded mx-auto block  text-black">
                 </div>
 
                 <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded mx-auto block">Enviar</button>

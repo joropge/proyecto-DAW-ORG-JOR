@@ -78,22 +78,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-4">
                 <label for="nombre" class="text-white">Introduzca nombre:</label>
                 <input type="text" name="nombre" placeholder="Nombre completo..."
-                    class="w-64 p-2 border border-gray-300 rounded mx-auto block">
+                    class="w-64 p-2 border border-gray-300 rounded mx-auto block text-black">
             </div>
             <div class="mb-4">
                 <label for="correo" class="text-white">Introduzca email:</label>
                 <input type="text" name="correo" placeholder="Introduzca email..."
-                    class="w-64 p-2 border border-gray-300 rounded mx-auto block">
+                    class="w-64 p-2 border border-gray-300 rounded mx-auto block  text-black">
             </div>
             <div class="mb-4">
                 <label for="username" class="text-white">Introduce tu nombre de usuario:</label>
                 <input type="text" name="username" placeholder="Nombre de usuario..."
-                    class="w-64 p-2 border border-gray-300 rounded mx-auto block">
+                    class="w-64 p-2 border border-gray-300 rounded mx-auto block  text-black">
             </div>
             <div class="mb-4">
                 <label for="pass" class="text-white">Introduzca clave:</label>
                 <input type="password" name="pass" placeholder="Contraseña..."
-                    class="w-64 p-2 border border-gray-300 rounded mx-auto block">
+                    class="w-64 p-2 border border-gray-300 rounded mx-auto block  text-black">
             </div>
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded mx-auto block">Enviar</button>
         </form>
