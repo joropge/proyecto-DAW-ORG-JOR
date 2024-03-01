@@ -50,6 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
     borrarProducto($db, $id);
 }
 
+//funcion para editar los productos
+function editarProducto($db, $id)
+{
+    // Preparar y ejecutar la consulta para obtener los detalles del producto por su ID
+    $consulta = $db->prepare("SELECT * FROM productos WHERE id = ?");
+    $consulta->bind_param('i', $id);
+    $consulta->execute();
+    $resultado = $consulta->get_result();
+    // Devuelve los detalles del producto como un array asociativo
+    return $resultado->fetch_assoc();
+}
+
+// Lógica para editar producto
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
+    $id = $_GET['editarProducto'];
+
+    // Assuming $db is your mysqli connection object
+    editarProducto($db, $id);
+}
 
 
 
@@ -91,11 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
                 echo "<td><img src='https://via.placeholder.com/150' width='100'></td>";
             }
             echo "<td class='enlace deleteBtn'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . "id='delete-btn' class='delete-btn'>Borrar</a></td>";
-            //boton que lleve a edit-producto.php con el id del producto
-            // echo "<td class='enlace'><a href='./actions/edit-producto.php?id=" . $row["id"] . "'>Editar</a></td>";
+            echo "<td class='enlace editBtn'><a href='./actions/editar-producto.php?id=" . $row["id"] . "' id='edit-btn' class='edit-btn'>Editar</a></td>";
             echo "</tr>";
         }
         echo "</table>";
+
         ?>
 
 
