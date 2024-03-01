@@ -74,7 +74,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     } else {
         echo "<td class='h-[150px] w-[150px] '><img src='https://via.placeholder.com/150'></td>";
     }
-    echo "<td class='px-4 py-2'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . " id='delete-btn' class='inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out'>Borrar</a></td>";
+    echo "<td class='px-4 py-2 mx-5'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . " id='delete-btn' class='inline-block bg-red-500 text-white px-8 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out'>Borrar</a></td>";
     echo "</tr>";
 }
 ?>
