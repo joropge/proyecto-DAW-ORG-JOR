@@ -19,6 +19,7 @@ function comprobar_usuario($username, $pass)
     if ($resultado->num_rows > 0) {
         $row = $resultado->fetch_assoc();
         // Verificar si la contraseña ingresada coincide con la contraseña hasheada almacenada en la base de datos
+
         if (password_verify($pass, $row['pass'])) {
             return array("id" => $row['id'], "username" => $row['username'], "nombre" => $row['nombre'], "rol" => $row['rol']);
         } else {
