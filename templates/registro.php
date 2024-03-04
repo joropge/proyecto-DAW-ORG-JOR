@@ -11,8 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die("Error de conexión: " . $conn->connect_error);
         }
 
-        $consulta = $conn->prepare("INSERT INTO usuarios (nombre, correo, username, pass, rol) VALUES (?,?,?,?, 2 )");
-        $consulta->bind_param('ssss', $_POST['nombre'], $_POST['correo'], $_POST['username'], $_POST['pass']);
+        // Hashear la contraseña
+        $pass_hasheada = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+
+        $consulta = $conn->prepare("INSERT INTO usuarios (nombre, correo, pass, fecha_registro , username, rol) VALUES (?,?,?,NOW(),?, 2 )");
+        $consulta->bind_param('ssss', $_POST['nombre'], $_POST['correo'],$pass_hasheada, $_POST['username']);
 
         try {
             $consulta->execute();
@@ -20,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['nombre'] = $_POST['nombre'];
             $_SESSION['correo'] = $_POST['correo'];
             $_SESSION['username'] = $_POST['username'];
-            $_SESSION['pass'] = $_POST['pass'];
+            // $_SESSION['pass'] = $_POST['pass'];
             // $_SESSION['fecha_registro'] = date('Y-m-d H:i:s');
             $_SESSION['rol'] = 2;
             header("Location: ../index.php");
