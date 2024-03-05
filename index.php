@@ -13,11 +13,30 @@ function cerrarSesion()
     header("Location: ./index.php");
 }
 
+// Si tenemos un post, es decir, si se ha enviado un formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Obtener el id del usuario
+    $id_usuario = $_SESSION['id'];
+
+    // Obtener el total del pedido
+    $total = $_POST['total'];
+
+    // Crear el pedido
+    $consulta = $db->prepare("INSERT INTO pedidos (idUser, precioTotal, fechaPedido) VALUES (?, ?, NOW())");
+    // bindear parametros, un string y un decimal
+    $consulta->bind_param('id', $id_usuario, $total);
+    $consulta->execute();
+}
+
 // Lógica para cerrar sesion
 if (isset($_GET["cerrar_sesion"])) {
     cerrarSesion();
 }
+
 ?>
+
+
 
 
 
@@ -57,7 +76,7 @@ if (isset($_GET["cerrar_sesion"])) {
                             de</a></li>
                     <li>
                         <a href="./templates/contacto.php" class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">
-                                Contacto
+                            Contacto
                         </a>
                     </li>
                     <li>
@@ -99,14 +118,18 @@ if (isset($_GET["cerrar_sesion"])) {
 
         <div class="order flex-col gap-5 bg-white text-black w-96 max-h-[500px] p-5 rounded-md absolute top-20 right-10 z-[100] overflow-y-auto hidden" id="order">
             <div id="full-basket" class="hidden">
-                <h1 class="text-lg font-bold mb-4">Resumen pedido</h1>
-                <ul id="list-order" class="flex flex-col gap-3">
-                </ul>
-                <p class="hidden p-2 border-t border-b border-white font-bold text-right mt-3" id="total-text">Total:
-                    <span id="total">0</span>€
-                </p>
-                <button id="pagar" class="w-full py-3 border-none rounded-md bg-black text-white text-center cursor-pointer mt-4 font-bold hover:bg-light-gray transition-all duration-200 ease-in-out">Finalizar
-                    pedido</button>
+                <form method="POST">
+                    <h1 class="text-lg font-bold mb-4">Resumen pedido</h1>
+                    <ul id="list-order" class="flex flex-col gap-3">
+                    </ul>
+                    <p class="hidden p-2 border-t border-b border-white font-bold text-right mt-3" id="total-text">Total:
+                        <span id="total">0</span>€
+                        
+                    </p>
+                    <input type="hidden" name="total" id="total_input">
+                    <button type="submit" id="pagar" class="w-full py-3 border-none rounded-md bg-black text-white text-center cursor-pointer mt-4 font-bold hover:bg-light-gray transition-all duration-200 ease-in-out">Finalizar
+                            pedido</button>
+                </form>
             </div>
             <div id="empty-basket">
                 <h1 class="text-lighter-gray text-sm font-semibold text-center">No hay productos en el carrito</h1>
@@ -137,6 +160,7 @@ if (isset($_GET["cerrar_sesion"])) {
         <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
     </footer>
 
+    
     <script src="./js/main.js" type="module"></script>
     </div>
 </body>
