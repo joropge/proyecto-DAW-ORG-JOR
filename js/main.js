@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
             precioTotal += parseFloat(precio.innerHTML);
         });
         document.getElementById("total").innerHTML = precioTotal.toFixed(2);
+        // Imprimir por pantalla 
+        console.log("primer valor");   
+        console.log(document.getElementById("total").innerHTML);    
+        document.getElementById('total_input').value = document.getElementById("total").innerHTML;
+        console.log("segundo valor");
+        console.log(document.getElementById('total_input').value);
     }
 
     function itemsTotal() {
