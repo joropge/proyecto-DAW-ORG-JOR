@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
  
 <body class="bg-black text-white font-sans">
 <main class="container mx-auto px-4 py-8">
-<h1 class="text-3xl mb-4">Administrador de productos Ezequiel</h1>
+<h1 class="text-yellow-500 text-3xl font-bold mb-4">Administrador de productos Ezequiel</h1>
 <a href="./actions/crear-producto.php"
             class="inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">Añadir
             producto</a>
@@ -110,18 +110,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
  
                 
 while ($row = mysqli_fetch_assoc($resultado)) {
-    echo "<tr>";
-    echo "<td class='px-4 py-2'>" . $row['nombre'] . "</td>";
-    echo "<td class='px-4 py-2'>" . $row['racion'] . "</td>";
-    echo "<td class='px-4 py-2'>" . $row['precioKg'] . "</td>";
+    echo "<tr class='h-full'>";
+    echo "<td class='px-4 py-2 text-center'>" . $row['nombre'] . "</td>";
+    echo "<td class='px-4 py-2 text-center'>" . $row['racion'] . "</td>";
+    echo "<td class='px-4 py-2 text-center'>" . $row['precioKg'] . "</td>";
     if (!empty($row['imagen'])) {
-        echo "<td class=' h-[150px] w-[150px] overflow-auto'><img src='../imagenes/" . $row['imagen'] . "' class='h-[150px] w-[150px]'></td>";
+        echo "<td class=' h-[150px] w-[150px] overflow-auto'><img class='h-[150px] w-[150px]' src='../imagenes/" . $row['imagen'] . "  '></td>";
     } else {
         echo "<td class='h-[150px] w-[150px] '><img src='https://via.placeholder.com/150'></td>";
     }
-    echo "<td class='px-4 py-2 mx-5'><a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . " id='delete-btn' class='inline-block bg-red-500 text-white px-8 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out'>Borrar</a></td>";
+    echo "<td class='px-4 py-2 mx-5'>
+    <div class=' w-full h-full flex flex-col justify-center items-center gap-2'>
+        <a href=" . htmlspecialchars($_SERVER["PHP_SELF"]) . "?borrarProducto=" . $row["id"] . " id='delete-btn' class='inline-block bg-red-500 text-white px-8 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out'>Borrar</a>
+        </br>
+        <a href='./actions/editar-producto.php?id=" . $row["id"] . "' id='edit-btn' class='inline-block bg-blue-500 text-white px-8 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out'>Editar</a>
+    </div>    
+        </td>";
     //Añadir enlace para editar
-    echo "<td class='px-4 py-2 mx-5'><a href='./actions/editar-producto.php?id=" . $row["id"] . "' id='edit-btn' class='inline-block bg-blue-500 text-white px-8 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out'>Editar</a></td>";
+    
     echo "</tr>";
 }
 ?>
