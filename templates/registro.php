@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['pass'] = $_POST['pass'];
             // $_SESSION['fecha_registro'] = date('Y-m-d H:i:s');
             $_SESSION['rol'] = 2;
-            // header("Location: pedido.php");
+             header("Location: ../index.php");
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }

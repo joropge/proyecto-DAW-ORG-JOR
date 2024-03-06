@@ -110,41 +110,60 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/output.css">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+
 </head>
 
-<body>
-    <h2>Editar Producto</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
-        <label for="nombre">Producto:</label><br>
-        <input type="text" id="nombre" name="nombre" value="<?php echo $producto['nombre']; ?>"><br>
-        <label for="racion">Ración:</label><br>
-        <input type="text" id="racion" name="racion" value="<?php echo $producto['racion']; ?>"><br>
-        <label for="precioKg">Precio por Kg:</label><br>
-        <input type="text" id="precioKg" name="precioKg" value="<?php echo $producto['precioKg']; ?>"><br>
-        <label for="fecha_produccion">Fecha de Producción:</label><br>
-        <input type="date" id="fecha_produccion" name="fecha_produccion" value="<?php echo $producto['fecha_produccion']; ?>"><br>
-        <label for="fecha_caducidad">Fecha de Caducidad:</label><br>
-        <input type="date" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $producto['fecha_caducidad']; ?>"><br>
-        <label for="imagen">Imagen:</label><br>
-        <input type="file" id="imagen" accept="image/jpg" name="imagen"><br>
-        <label for="categoria_id">Categoría:</label><br>
+<body class="bg-black p-8">
 
-        <fieldset>
-            <legend>Categoría:</legend>
-            <select name="categoria_id">
-                <option value="">-- Seleccione --</option>
-                <?php while ($categoria = mysqli_fetch_assoc($resultadoCat)) : ?>
-                    <option <?php echo $producto['categoria_id'] == $categoria["id"] ? 'selected' : ''; ?> value="<?php echo $categoria["id"]; ?>"><?php echo $categoria["tipo_animal"] . " - " . $categoria["procedencia"]; ?></option>
-                <?php endwhile; ?>
-            </select>
-        </fieldset>
-        <br>
-        <input type="submit" value="Actualizar">
-    </form>
-    <button><a href="../../admin" class="boton boton-verde">Volver</a></button>
+
+    <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-md shadow-md">
+        <div class="logo mb-4 flex flex-col items-center justify-center ">
+            <img src="../../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" />
+        </div>
+
+
+        <h2 class="text-2xl font-bold mb-4 text-white ">Editar Producto</h2>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="nombre" class="block text-sm font-medium text-white">Producto:</label>
+                <input type="text" id="nombre" name="nombre" value="<?php echo $producto['nombre']; ?>" class="mt-1 p-2 border rounded-md w-full">
+            </div>
+
+
+            <div class="mb-4">
+                <label for="imagen" class="block text-sm font-medium text-white ">Imagen:</label>
+                <input type="file" id="imagen" accept="image/jpg" name="imagen" class="mt-1 p-2 border rounded-md w-full text-white  ">
+            </div>
+
+            <div class="mb-4">
+                <label for="categoria_id" class="block text-sm font-medium text-white">Categoría:</label>
+                <select name="categoria_id" class="mt-1 p-2 border rounded-md w-full">
+                    <option value="">-- Seleccione --</option>
+                    <?php while ($categoria = mysqli_fetch_assoc($resultadoCat)) : ?>
+                        <option <?php echo $producto['categoria_id'] == $categoria["id"] ? 'selected' : ''; ?> value="<?php echo $categoria["id"]; ?>">
+                            <?php echo $categoria["tipo_animal"] . " - " . $categoria["procedencia"]; ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <input type="submit" value="Actualizar" class="bg-yellow-500 text-white py-2 px-4 rounded-md cursor-pointer">
+                <button>
+                    <a href="../../admin" class="bg-yellow-500 text-white py-2 px-4 rounded-md">Volver</a>
+                </button>
+            </div>
+        </form>
+
+    </div>
+    <script src="/js/main.js" type="module"></script>
 </body>
 
 </html>
+
 
 <?php
 // Cerrar conexión
