@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
     // bindear parametros, un string y un decimal
     $consulta->bind_param('id', $id_usuario, $total);
     $consulta->execute();
+    header("Location: ./templates/gracias.php");
 }
 
 
@@ -80,14 +81,14 @@ if (isset($_GET["cerrar_sesion"])) {
                             Contacto
                         </a>
                     </li>
-                    <li class="">
+                    <li class="flex items-center">
                         <?php
                         if (isset($_SESSION["nombre"])) {
                             //Imprimir el nombre de usuario
-                            echo "<p class='text-white text-md font-bold'>" . $_SESSION["nombre"] . "</p>";
+                            echo "<p class='text-white text-md font-bold mr-4'>" . $_SESSION["nombre"] . "</p>";
                             // Hacer un enlace cerrar sesion que aplique el metodo cerrarSesion
-                            echo "<a href='./index.php?cerrar_sesion' id='cerrar_sesion'>
-                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-3 h-3'>
+                            echo "<a href='./index.php?cerrar_sesion' id='cerrar_sesion' class='bg-red-600 hover:bg-red-500 rounded-full p-2'>
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' style='height: 1.3rem;'>
                             <path stroke-linecap='round' stroke-linejoin='round' d='M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15' />
                           </svg>
                           
