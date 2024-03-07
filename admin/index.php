@@ -83,26 +83,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
 <title>Administrador de productos Ezequiel</title>
 <link rel="stylesheet" href="../css/output.css" />
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19" rel="stylesheet">
+<style>
+    tbody tr:nth-child(even) {
+        background-color: #171819;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #222324;
+    }
+</style>
 </head>
  
 <body class="bg-black text-white font-sans">
-<main class="container mx-auto px-4 py-8">
-<h1 class="text-yellow-500 text-3xl font-bold mb-4">Administrador de productos Ezequiel</h1>
-<a href="./actions/crear-producto.php"
-            class="inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">Añadir
-            producto</a>
+<main class="container mx-0 px-4 py-8">
+    <h1 class="text-yellow-500 text-3xl font-bold mb-4">Administrador de productos Ezequiel</h1>
+    <div class="flex justify-between items-center h-16">   
+                       
+        <input type="text" id="search" class="w-80 border-2 border-gray-800 px-5 pr-16 rounded-lg text-sm focus:outline-none h-full text-black" placeholder="Search">
+                    
+        <a href="./actions/crear-producto.php"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">Añadir
+                producto</a>
+    </div>
+    
  
-        <table class="mt-8 w-full table-auto">
-<thead>
-<tr>
-<th class="px-4 py-2">Nombre</th>
-<th class="px-4 py-2">Racion</th>
-<th class="px-4 py-2">Precio KG</th>
-<th class="px-4 py-2">Imagen</th>
-<th class="px-4 py-2">Acción</th>
+        <table class="mt-8 w-full">
+<thead class="border-b-2 border-green-500">
+<tr class="border-b-2 border-green-500">
+<th class="px-4 py-2 text-xl">Nombre</th>
+<th class="px-4 py-2 text-xl">Racion</th>
+<th class="px-4 py-2 text-xl">Precio KG</th>
+<th class="px-4 py-2 text-xl">Imagen</th>
+<th class="px-4 py-2 text-xl">Acción</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="odd:bg-slate-300">
 <?php
                 // Your PHP code to display the products from the "productos" table goes here
                 $query = "SELECT * FROM productos";
@@ -111,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
                 
 while ($row = mysqli_fetch_assoc($resultado)) {
     echo "<tr class='h-full'>";
-    echo "<td class='px-4 py-2 text-center'>" . $row['nombre'] . "</td>";
+    echo "<td id='nameSearch' class='px-4 py-2 text-center'>" . $row['nombre'] . "</td>";
     echo "<td class='px-4 py-2 text-center'>" . $row['racion'] . "</td>";
     echo "<td class='px-4 py-2 text-center'>" . $row['precioKg'] . "</td>";
     if (!empty($row['imagen'])) {
@@ -135,6 +150,23 @@ while ($row = mysqli_fetch_assoc($resultado)) {
             </tbody>
 </table>
 </main>
-</body>
- 
+
+<script>
+    const search = document.getElementById('search');
+    search.addEventListener('keyup', function() {
+        let value = search.value.toLowerCase();
+        let rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            let nameCell = row.querySelector('#nameSearch'); 
+            let rowText = nameCell.textContent.toLowerCase(); 
+            if (rowText.includes(value)) {
+                row.style.display = ''; 
+                
+            } else {
+                row.style.display = 'none'; 
+            }
+        });
+    });
+</script>
+</body> 
 </html>
