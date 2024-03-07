@@ -112,20 +112,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Editar Producto</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/output.css">
-    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
-
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
 </head>
 
 <body class="bg-black p-8">
 
-
     <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-md shadow-md">
-        <div class="logo mb-4 flex flex-col items-center justify-center ">
-            <img src="../../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20" />
+        <div class="logo mb-4 flex flex-col items-center justify-center">
+            <img src="../../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20">
         </div>
 
-
-        <h2 class="text-2xl font-bold mb-4 text-white ">Editar Producto</h2>
+        <h2 class="text-2xl font-bold mb-4 text-white">Editar Producto</h2>
 
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="mb-4">
@@ -133,10 +130,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="text" id="nombre" name="nombre" value="<?php echo $producto['nombre']; ?>" class="mt-1 p-2 border rounded-md w-full">
             </div>
 
+            <div class="mb-4">
+                <label for="racion" class="block text-sm font-medium text-white">Ración:</label>
+                <input type="text" id="racion" name="racion" value="<?php echo $producto['racion']; ?>" class="mt-1 p-2 border rounded-md w-full">
+            </div>
 
             <div class="mb-4">
-                <label for="imagen" class="block text-sm font-medium text-white ">Imagen:</label>
-                <input type="file" id="imagen" accept="image/jpg" name="imagen" class="mt-1 p-2 border rounded-md w-full text-white  ">
+                <label for="precioKg" class="block text-sm font-medium text-white">Precio por Kg:</label>
+                <input type="text" id="precioKg" name="precioKg" value="<?php echo $producto['precioKg']; ?>" class="mt-1 p-2 border rounded-md w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="fecha_produccion" class="block text-sm font-medium text-white">Fecha de Producción:</label>
+                <input type="date" id="fecha_produccion" name="fecha_produccion" value="<?php echo $producto['fecha_produccion']; ?>" class="mt-1 p-2 border rounded-md w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="fecha_caducidad" class="block text-sm font-medium text-white">Fecha de Caducidad:</label>
+                <input type="date" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $producto['fecha_caducidad']; ?>" class="mt-1 p-2 border rounded-md w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="imagen" class="block text-sm font-medium text-white">Imagen:</label>
+                <input type="file" id="imagen" accept="image/jpg" name="imagen" class="mt-1 p-2 border rounded-md w-full text-white">
             </div>
 
             <div class="mb-4">
@@ -150,20 +166,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </select>
             </div>
 
-            <div class="mb-4">
-                <input type="submit" value="Actualizar" class="bg-yellow-500 text-white py-2 px-4 rounded-md cursor-pointer">
-                <button>
-                    <a href="../../admin" class="bg-yellow-500 text-white py-2 px-4 rounded-md">Volver</a>
-                </button>
+            <div class="mt-6 mb-4 w-full flex flex-row justify-center items-center gap-3">
+                <input type="submit" value="Actualizar" class="w-full bg-yellow-500 text-white py-2 px-4 rounded-md cursor-pointer">
+
+                <a href="../../admin" class="w-full text-center bg-yellow-500 text-white py-2 px-4 rounded-md ">Volver</a>
+
             </div>
         </form>
 
     </div>
-    <script src="/js/main.js" type="module"></script>
+
 </body>
 
 </html>
-
 
 <?php
 // Cerrar conexión

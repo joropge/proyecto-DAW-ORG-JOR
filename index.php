@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
     // bindear parametros, un string y un decimal
     $consulta->bind_param('id', $id_usuario, $total);
     $consulta->execute();
+    header("Location: ./templates/gracias.php");
 }
+
 
 
 function cerrarSesion()
