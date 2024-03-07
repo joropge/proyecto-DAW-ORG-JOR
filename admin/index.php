@@ -1,29 +1,29 @@
 <?php
- 
+
 require_once '../database.php';
 $db = conectarDB();
- 
+
 //Iniciar la sesion con el usuario traido del login, si el rol del usuario es diferente a 1, redirigir a index.php
 session_start();
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
     header("Location: ../index.php");
 }
- 
+
 function cerrarSesion()
 {
     session_unset();
     session_destroy();
     header("Location: ../index.php");
 }
- 
+
 // Lógica para cerrar sesion
 if (isset($_GET["cerrar_sesion"])) {
     cerrarSesion();
 }
- 
+
 function borrarProducto($db, $id)
 {
- 
+
     //borrar la imagen en carpeta imagenes en la raiz
     $consulta = $db->prepare('SELECT imagen FROM productos WHERE id = ?');
     $consulta->bind_param('i', $id);
@@ -32,24 +32,21 @@ function borrarProducto($db, $id)
     $producto = $resultado->fetch_assoc();
     $imagen = $producto['imagen'];
     unlink('../imagenes/' . $imagen);
- 
+
     $consulta = $db->prepare('DELETE FROM productos WHERE id = ?');
     $consulta->bind_param('i', $id);
     $consulta->execute();
- 
-   
- 
- 
+
 }
- 
+
 // Lógica para eliminar producto
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['borrarProducto'])) {
     $id = $_GET['borrarProducto'];
- 
+
     // Assuming $db is your mysqli connection object
     borrarProducto($db, $id);
 }
- 
+
 //funcion para editar los productos
 function editarProducto($db, $id)
 {
@@ -61,22 +58,20 @@ function editarProducto($db, $id)
     // Devuelve los detalles del producto como un array asociativo
     return $resultado->fetch_assoc();
 }
- 
+
 // Lógica para editar producto
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
     $id = $_GET['editarProducto'];
- 
+
     // Assuming $db is your mysqli connection object
     editarProducto($db, $id);
 }
- 
- 
- 
+
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,14 +79,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
 <link rel="stylesheet" href="../css/output.css" />
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19" rel="stylesheet">
 </head>
- 
+
 <body class="bg-black text-white font-sans">
 <main class="container mx-auto px-4 py-8">
 <h1 class="text-3xl mb-4">Administrador de productos Ezequiel</h1>
 <a href="./actions/crear-producto.php"
             class="inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">Añadir
             producto</a>
- 
         <table class="mt-8 w-full table-auto">
 <thead>
 <tr>
@@ -107,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['editarProducto'])) {
                 // Your PHP code to display the products from the "productos" table goes here
                 $query = "SELECT * FROM productos";
                 $resultado = mysqli_query($db, $query);
- 
+
                 
 while ($row = mysqli_fetch_assoc($resultado)) {
     echo "<tr>";
@@ -125,10 +119,10 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     echo "</tr>";
 }
 ?>
- 
+
             </tbody>
 </table>
 </main>
 </body>
- 
+
 </html>
