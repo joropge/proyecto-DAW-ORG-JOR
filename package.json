@@ -12,7 +12,7 @@
     "build": "vite build"
     
   },
-  "name": "proyecto-daw-org-afh",
+  "name": "proyecto-daw-org",
   "description": "Desarrollo conjunto de una web para una carnicería (Ezequiel)",
   "version": "1.0.0",
   "main": "postcss.config.js",
