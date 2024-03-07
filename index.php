@@ -6,18 +6,38 @@ $db = conectarDB();
 session_start();
 
 
+
+
+// Si tenemos un post, es decir, si se ha enviado un formulario y hay usuario con id distinto de null
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
+    // Obtener el id del usuario
+    $id_usuario = $_SESSION['id'];
+
+    // Obtener el total del pedido
+    $total = $_POST['total'];
+
+    // Crear el pedido
+    $consulta = $db->prepare("INSERT INTO pedidos (idUser, precioTotal, fechaPedido) VALUES (?, ?, NOW())");
+    // bindear parametros, un string y un decimal
+    $consulta->bind_param('id', $id_usuario, $total);
+    $consulta->execute();
+}
+
+
 function cerrarSesion()
 {
     session_unset();
     session_destroy();
     header("Location: ./index.php");
 }
-
 // Lógica para cerrar sesion
 if (isset($_GET["cerrar_sesion"])) {
     cerrarSesion();
 }
+
 ?>
+
+
 
 
 
@@ -57,7 +77,7 @@ if (isset($_GET["cerrar_sesion"])) {
                             de</a></li>
                     <li>
                         <a href="./templates/contacto.php" class="bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white">
-                                Contacto
+                            Contacto
                         </a>
                     </li>
                     <li>
@@ -74,39 +94,46 @@ if (isset($_GET["cerrar_sesion"])) {
                     </li>
                 </ul>
 
-                <svg class="w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full" id="basket" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g id="Basket" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <rect id="Container" x="0" y="0" width="24" height="24"> </rect>
-                            <path d="M4,10 L20,10 L20,16 C20,18.209139 18.209139,20 16,20 L8,20 C5.790861,20 4,18.209139 4,16 L4,10 L4,10 Z" id="shape-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </path>
-                            <path d="M7,4 L17,4 L17,5 C17,7.76142375 14.7614237,10 12,10 C9.23857625,10 7,7.76142375 7,5 L7,4 L7,4 Z" id="shape-2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" transform="translate(12.000000, 7.000000) scale(1, -1) translate(-12.000000, -7.000000) ">
+                <?php if (isset($_SESSION["id"])){
+                    echo "<svg class='w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full' id='basket' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='#000000'>
+                    <g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+                    <g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+                    <g id='SVGRepo_iconCarrier'>
+                        <g id='Basket' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+                            <rect id='Container' x='0' y='0' width='24' height='24'> </rect>
+                            <path d='M4,10 L20,10 L20,16 C20,18.209139 18.209139,20 16,20 L8,20 C5.790861,20 4,18.209139 4,16 L4,10 L4,10 Z' id='shape-1' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </path>
+                            <path d='M7,4 L17,4 L17,5 C17,7.76142375 14.7614237,10 12,10 C9.23857625,10 7,7.76142375 7,5 L7,4 L7,4 Z' id='shape-2' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0' transform='translate(12.000000, 7.000000) scale(1, -1) translate(-12.000000, -7.000000) '>
                             </path>
-                            <line x1="12" y1="13" x2="12" y2="17" id="shape-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
-                            <line x1="16" y1="13" x2="16" y2="17" id="shape-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
-                            <line x1="8" y1="13" x2="8" y2="17" id="shape-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
+                            <line x1='12' y1='13' x2='12' y2='17' id='shape-3' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </line>
+                            <line x1='16' y1='13' x2='16' y2='17' id='shape-4' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </line>
+                            <line x1='8' y1='13' x2='8' y2='17' id='shape-5' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </line>
                         </g>
                     </g>
                 </svg>
 
-                <div class="counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none">
-                    <p id="counter">0</p>
-                </div>
-
+                <div class='counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none'>
+                    <p id='counter'>0</p>
+                </div>";
+                } 
+                ?>
+            
             </div>
         </div>
 
         <div class="order flex-col gap-5 bg-white text-black w-96 max-h-[500px] p-5 rounded-md absolute top-20 right-10 z-[100] overflow-y-auto hidden" id="order">
             <div id="full-basket" class="hidden">
-                <h1 class="text-lg font-bold mb-4">Resumen pedido</h1>
-                <ul id="list-order" class="flex flex-col gap-3">
-                </ul>
-                <p class="hidden p-2 border-t border-b border-white font-bold text-right mt-3" id="total-text">Total:
-                    <span id="total">0</span>€
-                </p>
-                <button id="pagar" class="w-full py-3 border-none rounded-md bg-black text-white text-center cursor-pointer mt-4 font-bold hover:bg-light-gray transition-all duration-200 ease-in-out">Finalizar
-                    pedido</button>
+                <form method="POST">
+                    <h1 class="text-lg font-bold mb-4">Resumen pedido</h1>
+                    <ul id="list-order" class="flex flex-col gap-3">
+                    </ul>
+                    <p class="hidden p-2 border-t border-b border-white font-bold text-right mt-3" id="total-text">Total:
+                        <span id="total">0</span>€
+                        
+                    </p>
+                    <input type="hidden" name="total" id="total_input">
+                    <button type="submit" id="pagar" class="w-full py-3 border-none rounded-md bg-black text-white text-center cursor-pointer mt-4 font-bold hover:bg-light-gray transition-all duration-200 ease-in-out">Finalizar
+                            pedido</button>
+                </form>
             </div>
             <div id="empty-basket">
                 <h1 class="text-lighter-gray text-sm font-semibold text-center">No hay productos en el carrito</h1>
@@ -137,6 +164,7 @@ if (isset($_GET["cerrar_sesion"])) {
         <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
     </footer>
 
+    
     <script src="./js/main.js" type="module"></script>
     </div>
 </body>

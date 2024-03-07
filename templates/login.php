@@ -9,19 +9,27 @@ function comprobar_usuario($username, $pass)
     //Nos conectamos a la BD y lo igualamos a bd que sera donde se guarde la conexion
     $bd = conectarDB();
     //preparar la consulta
-    $consulta = $bd->prepare("SELECT id, nombre, username, rol FROM usuarios WHERE username = ? AND pass = ?");
-    //sustituir los ? por los valores $usuario y $pass
-    $consulta->bind_param("ss", $username, $pass);
+    $consulta = $bd->prepare("SELECT id, nombre, username, pass, rol FROM usuarios WHERE username = ?");
+    //sustituir los ? por el valor de $username
+    $consulta->bind_param("s", $username);
     //lanzar la consulta
     $consulta->execute();
     $resultado = $consulta->get_result();
 
     if ($resultado->num_rows > 0) {
         $row = $resultado->fetch_assoc();
-        return array("id" => $row['id'], "username" => $row['username'], "nombre" => $row['nombre'], "rol" => $row['rol']);
-    } else
+        // Verificar si la contraseña ingresada coincide con la contraseña hasheada almacenada en la base de datos
+
+        if (password_verify($pass, $row['pass'])) {
+            return array("id" => $row['id'], "username" => $row['username'], "nombre" => $row['nombre'], "rol" => $row['rol']);
+        } else {
+            return FALSE;
+        }
+    } else {
         return FALSE;
+    }
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $usu = comprobar_usuario($_POST["username"], $_POST["pass"]);
