@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "vite": "^5.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "tailwindcss": "^3.4.1"
+  },
+  "scripts": {
+    "build:css": "npx tailwindcss build -o ./css/output.css",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "name": "proyecto-daw-org",
+  "description": "Desarrollo conjunto de una web para una carnicería (Ezequiel)",
+  "version": "1.0.0",
+  "main": "postcss.config.js",
+  "author": "",
+  "license": "ISC"
+}
