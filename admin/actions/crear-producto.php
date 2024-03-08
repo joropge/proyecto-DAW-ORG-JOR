@@ -92,12 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
 </head>
 
-<body class="font-sans bg-black text-white font-medium ">
-    <main class="container mx-auto p-8">
-        <h1 class="text-3xl font-bold mb-4 py-2 px-4 rounded">Añadir producto</h1>
+<body class="bg-black p-8">
 
-        <!-- Boton de volver -->
-        <a href="../../admin" class="bg-yellow-500 text-white px-4 py-2 mb-4 inline-block rounded">Volver</a>
+    <main>
 
         <?php foreach ($errores as $error) : ?>
             <div class="bg-red-500 text-white p-4 mb-4">
@@ -105,44 +102,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         <?php endforeach; ?>
 
-        <form class="bg-black p-6 shadow-md rounded-md ml-4" method="POST" action="../../admin/actions/crear-producto.php" enctype="multipart/form-data">
-            <fieldset>
-                <legend class="text-lg font-bold">Información General</legend>
+        <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-md shadow-md">
+            <div class="logo mb-4 flex flex-col items-center justify-center">
+                <img src="../../assets/img/logo-menu.png" alt="Logo Ezequiel" class="w-20">
+            </div>
+            <h2 class="text-2xl font-bold mb-4 text-white">Añadir Producto</h2>
+            <form action="../../admin/actions/crear-producto.php" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="nombre" class="block text-sm font-medium text-white">Producto:</label>
+                    <input type="text" id="nombre" name="nombre" class="mt-1 p-2 border rounded-md w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="racion" class="block text-sm font-medium text-white">Ración:</label>
+                    <input type="text" id="racion" name="racion" class="mt-1 p-2 border rounded-md w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="precioKg" class="block text-sm font-medium text-white">Precio por Kg:</label>
+                    <input type="text" id="precioKg" name="precioKg" class="mt-1 p-2 border rounded-md w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="fecha_produccion" class="block text-sm font-medium text-white">Fecha de Producción:</label>
+                    <input type="date" id="fecha_produccion" name="fecha_produccion" class="mt-1 p-2 border rounded-md w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="fecha_caducidad" class="block text-sm font-medium text-white">Fecha de Caducidad:</label>
+                    <input type="date" id="fecha_caducidad" name="fecha_caducidad" class="mt-1 p-2 border rounded-md w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="imagen" class="block text-sm font-medium text-white">Imagen:</label>
+                    <input type="file" id="imagen" accept="image/jpg" name="imagen" class="mt-1 p-2 border rounded-md w-full text-white">
+                </div>
 
-                <label for="nombre" class="block mt-4">Producto</label>
-                <input type="text" id="nombre" name="nombre" class="border border-gray-300 p-2 w-1/2 rounded text-black" placeholder="Producto" value="<?php echo $nombre; ?>">
-
-                <label for="racion" class="block mt-4">Racion</label>
-                <input type="number" id="racion" name="racion" class="border border-gray-300 p-2 w-1/2 rounded text-black" placeholder="Cantidad Racion" value="<?php echo $racion; ?>">
-
-                <label for="precioKg" class="block mt-4">Precio/Kg:</label>
-                <input type="number" id="precioKg" name="precioKg" class="border border-gray-300 p-2 w-1/2 rounded text-black " placeholder="Precio/Kg" value="<?php echo $precioKg; ?>">
-
-                <label for="fecha_produccion" class="block mt-4">Fecha de Produccion</label>
-                <input type="date" id="fecha_produccion" name="fecha_produccion" class="border border-gray-300 p-2 w-1/2 rounded text-black" value="<?php echo $fecha_produccion; ?>">
-
-            <label for="fecha_caducidad">Fecha de Caducidad:</label>
-            <input type="date" class="border border-gray-300 p-2 w-1/2 rounded text-black" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $fecha_caducidad; ?>">
-            
-            <label for="imagen">Imagen:</label>
-            <input type="file" id="imagen" accept="image/jpeg, image/jpg, image/png" name="imagen">
-
-        </fieldset>
-
-            <fieldset class="mt-4">
-                <legend class="text-lg font-bold">Categoria:</legend>
-
-                <select name="categoria_id" class="border border-gray-300 p-2 w-1/2 rounded text-black">
-                    <option value="">-- Seleccione --</option>
-                    <?php while ($categoria = mysqli_fetch_assoc($resultado)) : ?>
-                        <option <?php echo $categoria === $categoria["id"] ? 'selected' : ''; ?> value="<?php echo $categoria["id"]; ?>"><?php echo $categoria["tipo_animal"] . " - " . $categoria["procedencia"]; ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </fieldset>
-
-            <input type="submit" value="Introducir Producto" class="bg-yellow-500 text-black px-4 py-2 mt-4 inline-block rounded">
-        </form>
+                <fieldset class="mb-4">
+                    <legend class="text-lg font-bold text-white">Categoria:</legend>
+                    <select name="categoria_id" class="border border-gray-300 p-2 w-1/2 rounded text-black w-full">
+                        <option value="">-- Seleccione --</option>
+                        <?php while ($categoria = mysqli_fetch_assoc($resultado)) : ?>
+                            <option <?php echo $categoria === $categoria["id"] ? 'selected' : ''; ?> value="<?php echo $categoria["id"]; ?>"><?php echo $categoria["tipo_animal"] . " - " . $categoria["procedencia"]; ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </fieldset>
+                <div class="mt-6 mb-4 w-full flex flex-row justify-center items-center gap-3">
+                    <input type="submit" value="Introducir Producto" class="w-full bg-yellow-500 text-white py-2 px-4 rounded-md cursor-pointer">
+                    <a href="../../admin" class="w-full text-center bg-yellow-500 text-white py-2 px-4 rounded-md ">Volver</a>
+                </div>
+            </form>
+        </div>
     </main>
 
     <script src="/js/main.js" type="module"></script>
