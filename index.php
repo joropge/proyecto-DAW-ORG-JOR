@@ -82,13 +82,18 @@ if (isset($_GET["cerrar_sesion"])) {
                             Contacto
                         </a>
                     </li>
-                    <li>
+                    <li class="flex items-center">
                         <?php
                         if (isset($_SESSION["nombre"])) {
-                            // Hacer un enlace cerrar sesion que aplique el metodo cerrarSesion
-                            echo "<a href='./index.php?cerrar_sesion' id='cerrar_sesion' class='bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white'>Cerrar Sesion</a>";
                             //Imprimir el nombre de usuario
-                            echo "<p class='text-white text-md font-bold'>" . $_SESSION["username"] . "</p>";
+                            echo "<p class='text-white text-md font-bold mr-4'>" . $_SESSION["nombre"] . "</p>";
+                            // Hacer un enlace cerrar sesion que aplique el metodo cerrarSesion
+                            echo "<a href='./index.php?cerrar_sesion' id='cerrar_sesion' class='bg-red-600 hover:bg-red-500 rounded-full p-2'>
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' style='height: 1.3rem;'>
+                            <path stroke-linecap='round' stroke-linejoin='round' d='M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15' />
+                          </svg>
+                          
+                            </a>";
                         } else {
                             echo "<a href='./templates/login.php' id='login' class='bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white'>Iniciar Sesion</a>";
                         }
@@ -96,7 +101,7 @@ if (isset($_GET["cerrar_sesion"])) {
                     </li>
                 </ul>
 
-                <?php if (isset($_SESSION["id"])){
+                <?php if (isset($_SESSION["username"])) {
                     echo "<svg class='w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full' id='basket' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='#000000'>
                     <g id='SVGRepo_bgCarrier' stroke-width='0'></g>
                     <g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
@@ -116,9 +121,9 @@ if (isset($_GET["cerrar_sesion"])) {
                 <div class='counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none'>
                     <p id='counter'>0</p>
                 </div>";
-                } 
+                }
                 ?>
-            
+
             </div>
         </div>
 
@@ -130,11 +135,11 @@ if (isset($_GET["cerrar_sesion"])) {
                     </ul>
                     <p class="hidden p-2 border-t border-b border-white font-bold text-right mt-3" id="total-text">Total:
                         <span id="total">0</span>€
-                        
+
                     </p>
                     <input type="hidden" name="total" id="total_input">
                     <button type="submit" id="pagar" class="w-full py-3 border-none rounded-md bg-black text-white text-center cursor-pointer mt-4 font-bold hover:bg-light-gray transition-all duration-200 ease-in-out">Finalizar
-                            pedido</button>
+                        pedido</button>
                 </form>
             </div>
             <div id="empty-basket">
@@ -166,7 +171,7 @@ if (isset($_GET["cerrar_sesion"])) {
         <p>&copy; 2023 Ezequiel. Todos los derechos reservados.</p>
     </footer>
 
-    
+
     <script src="./js/main.js" type="module"></script>
     </div>
 </body>
