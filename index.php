@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
 }
 
 
+
 function cerrarSesion()
 {
     session_unset();

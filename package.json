@@ -10,7 +10,6 @@
     "build:css": "npx tailwindcss build -o ./css/output.css",
     "dev": "vite",
     "build": "vite build"
-    
   },
   "name": "proyecto-daw-org",
   "description": "Desarrollo conjunto de una web para una carnicería (Ezequiel)",
