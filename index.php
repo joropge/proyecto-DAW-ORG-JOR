@@ -94,6 +94,10 @@ if (isset($_GET["cerrar_sesion"])) {
                           </svg>
                           
                             </a>";
+
+                            if ($_SESSION["rol"] == "1") {
+                                echo "<a href='./admin' id='admin' class='bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white ml-5'>Administrar</a>";
+                            }
                         } else {
                             echo "<a href='./templates/login.php' id='login' class='bg-transparent border-none text-neutral-400 text-md cursor-pointer hover:text-white'>Iniciar Sesion</a>";
                         }
