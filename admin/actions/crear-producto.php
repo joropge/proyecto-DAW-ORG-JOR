@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="date" id="fecha_produccion" name="fecha_produccion" class="border border-gray-300 p-2 w-1/2 rounded text-black" value="<?php echo $fecha_produccion; ?>">
 
             <label for="fecha_caducidad">Fecha de Caducidad:</label>
-            <input type="date" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $fecha_caducidad; ?>">
+            <input type="date" class="border border-gray-300 p-2 w-1/2 rounded text-black" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $fecha_caducidad; ?>">
             
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" accept="image/jpeg, image/jpg, image/png" name="imagen">
