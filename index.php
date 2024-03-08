@@ -27,6 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // bindear parametros, un string y un decimal
     $consulta->bind_param('id', $id_usuario, $total);
     $consulta->execute();
+
+    // enviar a gracias.php
+    header("Location: ./templates/gracias.php");
 }
 
 // Lógica para cerrar sesion
@@ -93,25 +96,28 @@ if (isset($_GET["cerrar_sesion"])) {
                     </li>
                 </ul>
 
-                <svg class="w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full" id="basket" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g id="Basket" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <rect id="Container" x="0" y="0" width="24" height="24"> </rect>
-                            <path d="M4,10 L20,10 L20,16 C20,18.209139 18.209139,20 16,20 L8,20 C5.790861,20 4,18.209139 4,16 L4,10 L4,10 Z" id="shape-1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </path>
-                            <path d="M7,4 L17,4 L17,5 C17,7.76142375 14.7614237,10 12,10 C9.23857625,10 7,7.76142375 7,5 L7,4 L7,4 Z" id="shape-2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0" transform="translate(12.000000, 7.000000) scale(1, -1) translate(-12.000000, -7.000000) ">
+                <?php if (isset($_SESSION["id"])){
+                    echo "<svg class='w-8 h-8 ml-5 cursor-pointer p-1 hover:bg-light-gray rounded-full' id='basket' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='#000000'>
+                    <g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+                    <g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+                    <g id='SVGRepo_iconCarrier'>
+                        <g id='Basket' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+                            <rect id='Container' x='0' y='0' width='24' height='24'> </rect>
+                            <path d='M4,10 L20,10 L20,16 C20,18.209139 18.209139,20 16,20 L8,20 C5.790861,20 4,18.209139 4,16 L4,10 L4,10 Z' id='shape-1' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </path>
+                            <path d='M7,4 L17,4 L17,5 C17,7.76142375 14.7614237,10 12,10 C9.23857625,10 7,7.76142375 7,5 L7,4 L7,4 Z' id='shape-2' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0' transform='translate(12.000000, 7.000000) scale(1, -1) translate(-12.000000, -7.000000) '>
                             </path>
-                            <line x1="12" y1="13" x2="12" y2="17" id="shape-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
-                            <line x1="16" y1="13" x2="16" y2="17" id="shape-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
-                            <line x1="8" y1="13" x2="8" y2="17" id="shape-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0,0"> </line>
+                            <line x1='12' y1='13' x2='12' y2='17' id='shape-3' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </line>
+                            <line x1='16' y1='13' x2='16' y2='17' id='shape-4' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </line>
+                            <line x1='8' y1='13' x2='8' y2='17' id='shape-5' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0,0'> </line>
                         </g>
                     </g>
                 </svg>
 
-                <div class="counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none">
-                    <p id="counter">0</p>
-                </div>
+                <div class='counter absolute top-7 right-8 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-sm select-none'>
+                    <p id='counter'>0</p>
+                </div>";
+                } 
+                ?>
 
             </div>
         </div>
